@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="起源618的时候，看到几篇关于黑苹果装机硬件介绍文章，对文章中介绍到itx小主机饶有兴趣，剁手的愿望开始在心里生根发芽。随后几天又了解到了 Intel 的小主机 NUC。该机器体积非常之小，甚合我意，购物的冲动开始占据我的大脑。遗憾的是该主机板载无线网卡，使用苹果原装网卡需要占用一个.m2接口，硬盘就只能用SATA了。也有一些玩家能够自己改造机器，但是会失去保修。之后又了解到淘宝有一款8750H小">
+<meta property="og:type" content="article">
+<meta property="og:title" content="黑苹果之初体验">
+<meta property="og:url" content="http://yoursite.com/2019/07/19/hackintosh_on_s200/index.html">
+<meta property="og:site_name" content="于木木的笔记">
+<meta property="og:description" content="起源618的时候，看到几篇关于黑苹果装机硬件介绍文章，对文章中介绍到itx小主机饶有兴趣，剁手的愿望开始在心里生根发芽。随后几天又了解到了 Intel 的小主机 NUC。该机器体积非常之小，甚合我意，购物的冲动开始占据我的大脑。遗憾的是该主机板载无线网卡，使用苹果原装网卡需要占用一个.m2接口，硬盘就只能用SATA了。也有一些玩家能够自己改造机器，但是会失去保修。之后又了解到淘宝有一款8750H小">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/07/19/hackintosh_on_s200/zhuji.png">
+<meta property="og:updated_time" content="2020-04-18T12:34:59.059Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="黑苹果之初体验">
+<meta name="twitter:description" content="起源618的时候，看到几篇关于黑苹果装机硬件介绍文章，对文章中介绍到itx小主机饶有兴趣，剁手的愿望开始在心里生根发芽。随后几天又了解到了 Intel 的小主机 NUC。该机器体积非常之小，甚合我意，购物的冲动开始占据我的大脑。遗憾的是该主机板载无线网卡，使用苹果原装网卡需要占用一个.m2接口，硬盘就只能用SATA了。也有一些玩家能够自己改造机器，但是会失去保修。之后又了解到淘宝有一款8750H小">
+<meta name="twitter:image" content="http://yoursite.com/2019/07/19/hackintosh_on_s200/zhuji.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>黑苹果之初体验</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/10/07/font_and_rear_separation_vue_flask_python/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/10/22/写代码的正确姿势/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/07/19/hackintosh_on_s200/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/07/19/hackintosh_on_s200/&text=黑苹果之初体验"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/07/19/hackintosh_on_s200/&title=黑苹果之初体验"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/07/19/hackintosh_on_s200/&is_video=false&description=黑苹果之初体验"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=黑苹果之初体验&body=Check out this article: http://yoursite.com/2019/07/19/hackintosh_on_s200/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/07/19/hackintosh_on_s200/&title=黑苹果之初体验"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/07/19/hackintosh_on_s200/&title=黑苹果之初体验"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/07/19/hackintosh_on_s200/&title=黑苹果之初体验"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/07/19/hackintosh_on_s200/&title=黑苹果之初体验"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/07/19/hackintosh_on_s200/&name=黑苹果之初体验&description=&lt;h4 id=&quot;起源&quot;&gt;&lt;a href=&quot;#起源&quot; class=&quot;headerlink&quot; title=&quot;起源&quot;&gt;&lt;/a&gt;起源&lt;/h4&gt;&lt;p&gt;618的时候，看到几篇关于黑苹果装机硬件介绍文章，对文章中介绍到itx小主机饶有兴趣，剁手的愿望开始在心里生根发芽。随后几天又了解到了 Intel 的小主机 NUC。该机器体积非常之小，甚合我意，购物的冲动开始占据我的大脑。遗憾的是该主机板载无线网卡，使用苹果原装网卡需要占用一个.m2接口，硬盘就只能用SATA了。也有一些玩家能够自己改造机器，但是会失去保修。之后又了解到淘宝有一款8750H小主机，网卡可更换。经过考虑，最终在两者之间选择了8750H小主机。&lt;br&gt;以下为硬件选购及系统安装部分。&lt;/p&gt;
+&lt;h4 id=&quot;硬件选购&quot;&gt;&lt;a href=&quot;#硬件选购&quot; class=&quot;headerlink&quot; title=&quot;硬件选购&quot;&gt;&lt;/a&gt;硬件选购&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;8750H小主机  * 1&lt;/li&gt;
+&lt;li&gt;内存 镁光DDR4 2666MHz 8G * 2&lt;/li&gt;
+&lt;li&gt;硬盘 浦科特 NVMe M9PeGn 512G * 1&lt;/li&gt;
+&lt;li&gt;网卡 博通 BCM94630CS2 + NGFF 转接卡 * 1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;/2019/07/19/hackintosh_on_s200/zhuji.png&quot; alt=&quot;zhuji&quot;&gt;&lt;br&gt;&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://yoursite.com/2019/07/19/hackintosh_on_s200/&t=黑苹果之初体验"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#起源"><span class="toc-number">1.</span> <span class="toc-text">起源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#硬件选购"><span class="toc-number">2.</span> <span class="toc-text">硬件选购</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#相关文件"><span class="toc-number">3.</span> <span class="toc-text">相关文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#系统安装"><span class="toc-number">4.</span> <span class="toc-text">系统安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用感受"><span class="toc-number">5.</span> <span class="toc-text">使用感受</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参考链接"><span class="toc-number">6.</span> <span class="toc-text">参考链接</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        黑苹果之初体验
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">于木木的笔记</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-07-19T14:29:12.000Z" itemprop="datePublished">2019-07-19</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h4 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h4><p>618的时候，看到几篇关于黑苹果装机硬件介绍文章，对文章中介绍到itx小主机饶有兴趣，剁手的愿望开始在心里生根发芽。随后几天又了解到了 Intel 的小主机 NUC。该机器体积非常之小，甚合我意，购物的冲动开始占据我的大脑。遗憾的是该主机板载无线网卡，使用苹果原装网卡需要占用一个.m2接口，硬盘就只能用SATA了。也有一些玩家能够自己改造机器，但是会失去保修。之后又了解到淘宝有一款8750H小主机，网卡可更换。经过考虑，最终在两者之间选择了8750H小主机。<br>以下为硬件选购及系统安装部分。</p>
+<h4 id="硬件选购"><a href="#硬件选购" class="headerlink" title="硬件选购"></a>硬件选购</h4><ul>
+<li>8750H小主机  * 1</li>
+<li>内存 镁光DDR4 2666MHz 8G * 2</li>
+<li>硬盘 浦科特 NVMe M9PeGn 512G * 1</li>
+<li>网卡 博通 BCM94630CS2 + NGFF 转接卡 * 1</li>
+</ul>
+<p><img src="/2019/07/19/hackintosh_on_s200/zhuji.png" alt="zhuji"><br><a id="more"></a></p>
+<h4 id="相关文件"><a href="#相关文件" class="headerlink" title="相关文件"></a>相关文件</h4><p><strong>本部分放在 ‘系统安装’ 安装部分之前， 系统安装部分不再对软件进行介绍</strong></p>
+<ul>
+<li>10.14.5 镜像： <a href="https://blog.daliansky.net/macOS-Mojave-10.14.5-18F132-official-version-with-Clover-4928-original-image.html" target="_blank" rel="noopener">https://blog.daliansky.net/macOS-Mojave-10.14.5-18F132-official-version-with-Clover-4928-original-image.html</a>, 文章末尾附有镜像下载地址，可根据情况选择适合自己的下载方式。 </li>
+<li>balenaEtcher: <a href="https://www.balena.io/etcher/" target="_blank" rel="noopener">https://www.balena.io/etcher/</a>  <strong>将U盘刷入系统镜像时使用</strong></li>
+<li>EFI：<a href="https://github.com/kkzzhizhou/S200H_I7-8750H_Hackintosh" target="_blank" rel="noopener">https://github.com/kkzzhizhou/S200H_I7-8750H_Hackintosh</a> <strong>安装系统以后替换EFI时使用（或许可以在将镜像写入U盘以后直接替换，本人未实验）</strong></li>
+<li>Clover Configurator： <a href="https://mackie100projects.altervista.org/download/ccg/" target="_blank" rel="noopener">https://mackie100projects.altervista.org/download/ccg/</a> <strong>修改config文件时使用</strong></li>
+<li>iMessageDebugV2: <a href="https://www.tonymacx86.com/attachments/imessagedebugv2-zip.114403" target="_blank" rel="noopener">https://www.tonymacx86.com/attachments/imessagedebugv2-zip.114403</a>  <strong>黑苹果洗白时验证重启以后三码是否变化之用</strong></li>
+</ul>
+<h4 id="系统安装"><a href="#系统安装" class="headerlink" title="系统安装"></a>系统安装</h4><ul>
+<li>下载黑果小兵10.14.5镜像，使用 【balenEtcher](<a href="https://www.balena.io/etcher/" target="_blank" rel="noopener">https://www.balena.io/etcher/</a>) 输入U盘</li>
+<li>小主机插入U盘，开机，根据提示来即可。详细步骤可参考文末参考链接。</li>
+<li>中间会有一次重启，需要去 Clover 的 config 选项中选择 config_HD615_620_630_640_650 , 安装成功。</li>
+<li>成功以后, 将 GitHub下载的 <a href="https://github.com/kkzzhizhou/S200H_I7-8750H_Hackintosh" target="_blank" rel="noopener">S200 EFI</a> 替换系统的EFI，使用 <a href="https://mackie100projects.altervista.org/download/ccg/" target="_blank" rel="noopener">Clover Configurator</a> 打开，选择 Text Mode. 拔掉硬盘，重启即可。此时系统总体应该已经可用。</li>
+<li>挂载系统硬盘，替换 <a href="https://github.com/kkzzhizhou/S200H_I7-8750H_Hackintosh" target="_blank" rel="noopener">S200 EFI</a>。然后使用 <a href="https://mackie100projects.altervista.org/download/ccg/" target="_blank" rel="noopener">Clover Configurator</a> 打开替换后 EFI 中的 config.plist。Gui 中选择 文本模式 或者 text only。（根据系统语言现实的有所区别，本人安装的时候选择是英文语言，所以软件界面显示的皆是英文。读者朋友可以根据意思去对照。）</li>
+<li><a href="https://limh.me/Serial_Number.html" target="_blank" rel="noopener">洗白教程</a> <ul>
+<li>主要操纵步骤依照该<a href="https://limh.me/Serial_Number.html" target="_blank" rel="noopener">洗白教程</a> </li>
+<li>型号 Macmini8,1。 （起初，本人选择的是 MacBook Pro 15, 2， 使用该机型，关掉显示器或者睡眠，都会造成死机。)</li>
+<li>System Parameters, 需要选中Inject System ID, 否则重启后，iMessageDebug可能会显示System Id： failed，三码不一致。</li>
+<li>按照洗白教程和上面都步骤操作以后。<strong>重启</strong>，重启以后，运行 iMessageDebug，按 Y 保存三码到txt文件文件中。<strong>再次重启</strong>，重启后再次运行iMessageDebug，比较iMessageDebug的运行结果和上一次保存在txt文件中的三码是否一直。如果一致，即表示洗白成功。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>建议爱折腾的同学试下，U盘刷入镜像之后，直接用EFI替换掉U盘镜像中的EFI，然后将 XXX改为text mode。应该是可以直接安装的。我的系统上已经安装了一些常用的软件，不方便再做测试了。</p>
+</blockquote>
+<h4 id="使用感受"><a href="#使用感受" class="headerlink" title="使用感受"></a>使用感受</h4><ul>
+<li>编译同一个大型项目，公司18款15寸最低配 MacBook Pro，需要编译 十几分钟。小主机 7分钟左右 即可编译完毕。</li>
+<li>无线网卡的位置发热有些严重，需要想办法降降温。</li>
+<li>睡眠重启后，Chrome 白屏，Safari不能播放视频。解决办法，知乎上的朋友说使用软件禁止睡眠，其实<strong>直接在系统里设置禁止睡眠。不需要使用第三方软件即可达到该目的。</strong></li>
+<li>感觉16G内存还是有些少，编译前面说的大型项目的时候，内存只剩几百M了。有需要的朋友可以考虑上 16G以上 的内存。</li>
+<li>另外还选购了SN700， 装了 Manjaro Linux， KDE版本和i3wm版本都很不错，目前安装的是KDE版本，后期可能会考虑切换到i3WM。</li>
+</ul>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><ul>
+<li>知乎黑苹果及小主机介绍：<a href="https://zhuanlan.zhihu.com/p/65263547" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/65263547</a></li>
+<li>安装教程: <a href="https://blog.daliansky.net/macOS-Mojave-10.14.5-18F132-official-version-with-Clover-4928-original-image.html" target="_blank" rel="noopener">https://blog.daliansky.net/macOS-Mojave-10.14.5-18F132-official-version-with-Clover-4928-original-image.html</a></li>
+<li>洗白教程: <a href="https://limh.me/Serial_Number.html" target="_blank" rel="noopener">https://limh.me/Serial_Number.html</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#起源"><span class="toc-number">1.</span> <span class="toc-text">起源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#硬件选购"><span class="toc-number">2.</span> <span class="toc-text">硬件选购</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#相关文件"><span class="toc-number">3.</span> <span class="toc-text">相关文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#系统安装"><span class="toc-number">4.</span> <span class="toc-text">系统安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用感受"><span class="toc-number">5.</span> <span class="toc-text">使用感受</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参考链接"><span class="toc-number">6.</span> <span class="toc-text">参考链接</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/07/19/hackintosh_on_s200/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/07/19/hackintosh_on_s200/&text=黑苹果之初体验"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/07/19/hackintosh_on_s200/&title=黑苹果之初体验"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/07/19/hackintosh_on_s200/&is_video=false&description=黑苹果之初体验"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=黑苹果之初体验&body=Check out this article: http://yoursite.com/2019/07/19/hackintosh_on_s200/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/07/19/hackintosh_on_s200/&title=黑苹果之初体验"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/07/19/hackintosh_on_s200/&title=黑苹果之初体验"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/07/19/hackintosh_on_s200/&title=黑苹果之初体验"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/07/19/hackintosh_on_s200/&title=黑苹果之初体验"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/07/19/hackintosh_on_s200/&name=黑苹果之初体验&description=&lt;h4 id=&quot;起源&quot;&gt;&lt;a href=&quot;#起源&quot; class=&quot;headerlink&quot; title=&quot;起源&quot;&gt;&lt;/a&gt;起源&lt;/h4&gt;&lt;p&gt;618的时候，看到几篇关于黑苹果装机硬件介绍文章，对文章中介绍到itx小主机饶有兴趣，剁手的愿望开始在心里生根发芽。随后几天又了解到了 Intel 的小主机 NUC。该机器体积非常之小，甚合我意，购物的冲动开始占据我的大脑。遗憾的是该主机板载无线网卡，使用苹果原装网卡需要占用一个.m2接口，硬盘就只能用SATA了。也有一些玩家能够自己改造机器，但是会失去保修。之后又了解到淘宝有一款8750H小主机，网卡可更换。经过考虑，最终在两者之间选择了8750H小主机。&lt;br&gt;以下为硬件选购及系统安装部分。&lt;/p&gt;
+&lt;h4 id=&quot;硬件选购&quot;&gt;&lt;a href=&quot;#硬件选购&quot; class=&quot;headerlink&quot; title=&quot;硬件选购&quot;&gt;&lt;/a&gt;硬件选购&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;8750H小主机  * 1&lt;/li&gt;
+&lt;li&gt;内存 镁光DDR4 2666MHz 8G * 2&lt;/li&gt;
+&lt;li&gt;硬盘 浦科特 NVMe M9PeGn 512G * 1&lt;/li&gt;
+&lt;li&gt;网卡 博通 BCM94630CS2 + NGFF 转接卡 * 1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;/2019/07/19/hackintosh_on_s200/zhuji.png&quot; alt=&quot;zhuji&quot;&gt;&lt;br&gt;&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://yoursite.com/2019/07/19/hackintosh_on_s200/&t=黑苹果之初体验"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2020
+    于木木
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-89789260-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Baidu Analytics -->
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?237cd7bbe979bebea6c6c345088eb8fb";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

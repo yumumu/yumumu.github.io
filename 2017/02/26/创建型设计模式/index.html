@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="这一段要学习下设计模式，目前在看《设计模式的艺术之道》，读的过程中记录总结一下。 设计模式设计模式是什么？  在软件工程中，设计模式是对软件设计中普遍存在（反复出现）的各种问题，所提出的解决方案。这个术语是由埃里希·伽玛（Erich Gamma）等人在1990年代从建筑设计领域引入到计算机科学的。设计模式并不直接用来完成代码的编写，而是在描述各种不同的情况下,要怎么解决问题的一种方案。面向对象设计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="创建型设计模式">
+<meta property="og:url" content="http://yoursite.com/2017/02/26/创建型设计模式/index.html">
+<meta property="og:site_name" content="于木木的笔记">
+<meta property="og:description" content="这一段要学习下设计模式，目前在看《设计模式的艺术之道》，读的过程中记录总结一下。 设计模式设计模式是什么？  在软件工程中，设计模式是对软件设计中普遍存在（反复出现）的各种问题，所提出的解决方案。这个术语是由埃里希·伽玛（Erich Gamma）等人在1990年代从建筑设计领域引入到计算机科学的。设计模式并不直接用来完成代码的编写，而是在描述各种不同的情况下,要怎么解决问题的一种方案。面向对象设计">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2017/02/26/创建型设计模式/设计模式.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/02/26/创建型设计模式/单例模式UML.png">
+<meta property="og:image" content="http://yoursite.com/2017/02/26/创建型设计模式/简单工厂模式UML.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/02/26/创建型设计模式/工厂方法模式UML.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/02/26/创建型设计模式/抽象工厂UML.png">
+<meta property="og:image" content="http://yoursite.com/2017/02/26/创建型设计模式/原型模式UML.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/02/26/创建型设计模式/建造者模式UML.jpg">
+<meta property="og:updated_time" content="2020-04-18T12:34:59.070Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="创建型设计模式">
+<meta name="twitter:description" content="这一段要学习下设计模式，目前在看《设计模式的艺术之道》，读的过程中记录总结一下。 设计模式设计模式是什么？  在软件工程中，设计模式是对软件设计中普遍存在（反复出现）的各种问题，所提出的解决方案。这个术语是由埃里希·伽玛（Erich Gamma）等人在1990年代从建筑设计领域引入到计算机科学的。设计模式并不直接用来完成代码的编写，而是在描述各种不同的情况下,要怎么解决问题的一种方案。面向对象设计">
+<meta name="twitter:image" content="http://yoursite.com/2017/02/26/创建型设计模式/设计模式.jpg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>创建型设计模式</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/03/12/结构型设计模式/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/02/18/《iOS网络高级编程》读书总结/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/02/26/创建型设计模式/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/02/26/创建型设计模式/&text=创建型设计模式"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/02/26/创建型设计模式/&title=创建型设计模式"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/02/26/创建型设计模式/&is_video=false&description=创建型设计模式"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=创建型设计模式&body=Check out this article: http://yoursite.com/2017/02/26/创建型设计模式/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/02/26/创建型设计模式/&title=创建型设计模式"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/02/26/创建型设计模式/&title=创建型设计模式"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/02/26/创建型设计模式/&title=创建型设计模式"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/02/26/创建型设计模式/&title=创建型设计模式"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/02/26/创建型设计模式/&name=创建型设计模式&description=&lt;p&gt;这一段要学习下设计模式，目前在看《设计模式的艺术之道》，读的过程中记录总结一下。&lt;/p&gt;
+&lt;h2 id=&quot;设计模式&quot;&gt;&lt;a href=&quot;#设计模式&quot; class=&quot;headerlink&quot; title=&quot;设计模式&quot;&gt;&lt;/a&gt;设计模式&lt;/h2&gt;&lt;p&gt;设计模式是什么？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在软件工程中，设计模式是对软件设计中普遍存在（反复出现）的各种问题，所提出的解决方案。这个术语是由埃里希·伽玛（Erich Gamma）等人在1990年代从建筑设计领域引入到计算机科学的。&lt;br&gt;设计模式并不直接用来完成代码的编写，而是在描述各种不同的情况下,要怎么解决问题的一种方案。面向对象设计模式通常以类别或对象描述其中的关系和相互作用，但不涉及用来完成应用程序的特定类别或对象。设计模式能使不稳定依赖于相对稳定、具体依赖于相对抽象，避免引起麻烦的紧耦合，以增强软件面对并适应变化的能力。&lt;/p&gt;
+&lt;/blockquote&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://yoursite.com/2017/02/26/创建型设计模式/&t=创建型设计模式"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#设计模式"><span class="toc-number">1.</span> <span class="toc-text">设计模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建型模式"><span class="toc-number">1.1.</span> <span class="toc-text">创建型模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#单例模式"><span class="toc-number">1.1.1.</span> <span class="toc-text">单例模式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#动机"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">动机</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#概念"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#优缺点"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#适用场景"><span class="toc-number">1.1.1.4.</span> <span class="toc-text">适用场景</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#简单工厂"><span class="toc-number">1.1.2.</span> <span class="toc-text">简单工厂</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#动机-1"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">动机</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#概念-1"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#优缺点-1"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#适用场景-1"><span class="toc-number">1.1.2.4.</span> <span class="toc-text">适用场景</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#工厂方法"><span class="toc-number">1.1.3.</span> <span class="toc-text">工厂方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#动机-2"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">动机</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#概念-2"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#优缺点-2"><span class="toc-number">1.1.3.3.</span> <span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#适用场景-2"><span class="toc-number">1.1.3.4.</span> <span class="toc-text">适用场景</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#抽象工厂"><span class="toc-number">1.1.4.</span> <span class="toc-text">抽象工厂</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#动机-3"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">动机</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#概念-3"><span class="toc-number">1.1.4.2.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#优缺点-3"><span class="toc-number">1.1.4.3.</span> <span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#适用场景-3"><span class="toc-number">1.1.4.4.</span> <span class="toc-text">适用场景</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#原型模式"><span class="toc-number">1.1.5.</span> <span class="toc-text">原型模式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#动机-4"><span class="toc-number">1.1.5.1.</span> <span class="toc-text">动机</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#概念-4"><span class="toc-number">1.1.5.2.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#优缺点-4"><span class="toc-number">1.1.5.3.</span> <span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#适用场景-4"><span class="toc-number">1.1.5.4.</span> <span class="toc-text">适用场景</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#建造者模式"><span class="toc-number">1.1.6.</span> <span class="toc-text">建造者模式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#动机-5"><span class="toc-number">1.1.6.1.</span> <span class="toc-text">动机</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#概念-5"><span class="toc-number">1.1.6.2.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#优缺点-5"><span class="toc-number">1.1.6.3.</span> <span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#适用场景-5"><span class="toc-number">1.1.6.4.</span> <span class="toc-text">适用场景</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        创建型设计模式
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">于木木的笔记</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2017-02-26T06:21:11.000Z" itemprop="datePublished">2017-02-26</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/设计模式/">设计模式</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>这一段要学习下设计模式，目前在看《设计模式的艺术之道》，读的过程中记录总结一下。</p>
+<h2 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h2><p>设计模式是什么？</p>
+<blockquote>
+<p>在软件工程中，设计模式是对软件设计中普遍存在（反复出现）的各种问题，所提出的解决方案。这个术语是由埃里希·伽玛（Erich Gamma）等人在1990年代从建筑设计领域引入到计算机科学的。<br>设计模式并不直接用来完成代码的编写，而是在描述各种不同的情况下,要怎么解决问题的一种方案。面向对象设计模式通常以类别或对象描述其中的关系和相互作用，但不涉及用来完成应用程序的特定类别或对象。设计模式能使不稳定依赖于相对稳定、具体依赖于相对抽象，避免引起麻烦的紧耦合，以增强软件面对并适应变化的能力。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="创建型模式"><a href="#创建型模式" class="headerlink" title="创建型模式"></a>创建型模式</h3><p>GoF的23中设计模式按类型可分为创建型模式、结构型模式和行为型模式。其中创建型模式又包括单例模式、工厂方法、抽象工厂、原型模式和建造者模式。见下图<br><img src="/2017/02/26/创建型设计模式/设计模式.jpg" alt="设计模式分类"></p>
+<blockquote>
+<p>创建型模式关注对象的创建过程，是一类常用的设计模式，在软件开发中引用非常广泛。创建型模式将对象的创建和使用分离，在使用对象时无须关心对象的创建细节，从而降低系统的耦合度，让设计方案更易于修改和扩展。每一个创建型模式都通过采用不同的解决方案来回答3个问题：创建什么（What），由谁创建（Who）和何时创建（When）。</p>
+</blockquote>
+<h4 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h4><h5 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h5><p>对于一个软件系统的某些类而言，无须创建多个实例或者不能创建多个实例。如iOS开发中的UIApplication、NSUserDefaults等</p>
+<h5 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h5><blockquote>
+<p>单例模式，也叫单子模式，是一种常用的软件设计模式。在应用这个模式时，单例对象的类必须保证只有一个实例存在。许多时候整个系统只需要拥有一个的全局对象，这样有利于我们协调系统整体的行为。比如在某个服务器程序中，该服务器的配置信息存放在一个文件中，这些配置数据由一个单例对象统一读取，然后在服务进程中的其它对象再通过这个单例对象获取这些配置信息。这种方式简化了在复杂环境下的配置管理。<br><img src="/2017/02/26/创建型设计模式/单例模式UML.png" alt="设计模式分类">   </p>
+</blockquote>
+<p>单例模式可细分为饿汉式单例类和懒汉式单例类。  </p>
+<ul>
+<li>饿汉式单例类在类被加载时静态变量instance会被初始化，此时类的私有构造函数会被调用，单例类的唯一实例会被创建。</li>
+<li>懒汉式单例类在第一次调用getInstance()方法时实例化，在类被加载时并不自行实例化。<br><strong><em>懒汉式单例类在多线程环境中可能会出现问题，可以通过加锁解决问题</em></strong>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 双重检查锁定Double-Check Locking</span><br><span class="line">class LazySingleton &#123;</span><br><span class="line">	private volatile static LazySingleton instance = null;</span><br><span class="line">	</span><br><span class="line">	private LazySingleton() &#123;</span><br><span class="line">		// 第一重判断</span><br><span class="line">		if (instance == null) &#123;</span><br><span class="line">			synchronized(LazySingleton.class) &#123;</span><br><span class="line">			// 第二重判断</span><br><span class="line">			if (instance == null) &#123;</span><br><span class="line">				instance = new LazySingleton();	 // 创建单例实例</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>为什么要有双重锁定?<br><strong><em>如果没有第二种判断，多个线程可以同时通过instance == null的判断，当一个线程执行完加锁的代码段以后，其它线程会再次执行加锁的代码段，这样新的单例会被创建，继而引发问题。</em></strong></p>
+<p>一种更好的单例实现方法Initialization on Demand Holder(IoDH)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// initialization on Demand Holder</span><br><span class="line">class Singleton &#123;</span><br><span class="line">	private Singleton() &#123;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	private static class HolderClass &#123;</span><br><span class="line">		private final static Singleton instance = new Singleton();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static Singleton getInsatnce() &#123;</span><br><span class="line">		retun HolderClass.instance;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>通过使用IoDH，既可以实现延迟加载，又可以保证线程安全，不影响系统性能。IoDH的缺点是很多面向对象语言不支持IoDH</strong></p>
+<h5 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h5><p>优点：</p>
+<ul>
+<li>单例模式提供了对唯一实例的受控访问。因为单例类封装了它的唯一实例，所以它可以严格控制客户怎样以及何时访问它。</li>
+<li>由于在系统内存中只存在一个对象，因此可以节约系统资源，对于一些需要频繁创建和销毁的对象，单例模式无疑可以提高系统的性能。</li>
+<li>允许可变数目的实例。基于单例模式，开发人员可以进行扩展，使用与控制单例对象相似的方法来获得指定个数的实例对象，既节省系统资源，又解决了由于单例对象共享过多有损性能的问题。（注：自行提供指定书目实例对象的类可以称之为多例类。）  </li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>由于单例模式中没有抽象层，因此单例类的扩展有很大的困难。</li>
+<li>单例类的职责过重，在一定程度上违背了单一职责原则。因为单例类既能提供业务方法，又提供了创建对象的方法（工厂方法），将对象的创建和对象本身的功能耦合在一起。</li>
+<li>现在很多面向对象语言的运行环境都提供了自动垃圾回收技术，因此，如果实例化的共享对象长时间不被利用，系统会认为它是垃圾，会自动销毁并回收资源，下次利用时又将重新实例化，这将导致共享的单例对象状态的丢失。  </li>
+</ul>
+<h5 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h5><ul>
+<li>系统只需要一个实例对象。例如，系统要求提供一个唯一的序列号生成器或资源管理器，或者需要考虑资源消耗太大而只允许创建一个对象。</li>
+<li>客户需要调用类的单个实例只允许使用一个公共访问点，除了该公共访问点，不能通过其它途径访问该实例。</li>
+</ul>
+<h4 id="简单工厂"><a href="#简单工厂" class="headerlink" title="简单工厂"></a>简单工厂</h4><h5 id="动机-1"><a href="#动机-1" class="headerlink" title="动机"></a>动机</h5><p>该模式不属于GoF的23中设计模式，但在软件开发中应用也较为频繁，通常将它作为学习其它工厂模式的入门。</p>
+<h5 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h5><blockquote>
+<p>定义一个工厂类，它可以根据参数的不同返回不同类的实例，被创建的实例通常都具有共同的父类。因为在简单工厂模式中用于创建实例的方法是静态（static）方法，因此简单工厂模式又被称为静态工厂方法（static Factory method）模式。它属于类创建型模式。<br><img src="/2017/02/26/创建型设计模式/简单工厂模式UML.jpg" alt="设计模式分类">  </p>
+</blockquote>
+<h5 id="优缺点-1"><a href="#优缺点-1" class="headerlink" title="优缺点"></a>优缺点</h5><p>优点：</p>
+<ul>
+<li>工厂类包含必要的逻辑判断，可以决定在什么时候创建哪一个产品类的实例，客户端可以免除直接创建产品对象的职责，而仅仅“消费”产品。简单工厂模式实现了对象创建和使用的分离。</li>
+<li>客户端无须知道所创建的具体产品类的类名，只需要知道具体产品类所对应的参数即可，对于一些复杂的雷鸣，通过简单工厂模式可以在一定程度减少使用者的记忆量。</li>
+<li>通过引入配置文件，可以在不修改任何客户端代码的情况下更换和增加新的具体产品类，在一定程度上提高了系统的灵活性。 </li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>工厂类几种了所有产品的创建逻辑，职责过重，一旦不能正常工作，整个系统都要受到影响。</li>
+<li>使用简单工厂模式会增加系统中类的个数（引入了新的工厂类），增加了系统的复杂度和理解难度。</li>
+<li>系统扩展困难，添加新产品必须要修改工厂逻辑，产品类型较多时有可能会造成工厂逻辑过于复杂，不利于系统的扩展和维护。</li>
+<li>简单工厂模式由于使用了静态工厂方法，造成工厂角色无法形成基于继承的等级结构。</li>
+</ul>
+<h5 id="适用场景-1"><a href="#适用场景-1" class="headerlink" title="适用场景"></a>适用场景</h5><ul>
+<li>工厂类负责的创建对象比较少，不会造成工厂方法中的业务逻辑太过复杂。</li>
+</ul>
+<h4 id="工厂方法"><a href="#工厂方法" class="headerlink" title="工厂方法"></a>工厂方法</h4><h5 id="动机-2"><a href="#动机-2" class="headerlink" title="动机"></a>动机</h5><p>简单工厂模式虽然简单，但是新增加产品必须要改工厂类，违背了开闭原则，产品较多时，工厂方法中的业务逻辑也会过于复杂。工厂方法模式应运而生，可以很方便地解决上述问题。</p>
+<h5 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h5><blockquote>
+<p>定义一个用于创建对象的接口，让子类决定将哪一个类实例化。工厂方法模式让一个类的实例化延迟到其子类。工厂方法模式简称为工厂模式（Factory Pattern）,又可称作虚拟构造器模式(Virtual Constructor Pattern)或多态工厂模式(Polymorphic Factory Pattern)。工厂方法模式是一种类似创建型模式。<br><img src="/2017/02/26/创建型设计模式/工厂方法模式UML.jpg" alt="设计模式分类">  </p>
+</blockquote>
+<h5 id="优缺点-2"><a href="#优缺点-2" class="headerlink" title="优缺点"></a>优缺点</h5><p>优点：</p>
+<ul>
+<li>在系统中加入新产品时，无须修改抽象工厂和抽象产品提供的接口，无须修改其它工厂和产品，系统的可扩展性非常好，符合开闭原则。  </li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>添加新产品时，需要添加新的具体工厂类和具体产品类，类的个数会成对增加，一定程度上增加了系统的复杂度，有更多的类需要编译和运行，会给系统带来一些额外的开销。</li>
+</ul>
+<h5 id="适用场景-2"><a href="#适用场景-2" class="headerlink" title="适用场景"></a>适用场景</h5><ul>
+<li>创建对象需要大量重复的代码</li>
+<li>创建对象需要访问某些信息，而这些信息不应该包含在复合类中</li>
+<li>创建对象的生命周期必须集中管理，以保证在整个程序中具有一致的行为  </li>
+</ul>
+<h4 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h4><h5 id="动机-3"><a href="#动机-3" class="headerlink" title="动机"></a>动机</h5><p>工厂方法模式通过引入工厂等级结构，解决了简单工厂模式中工厂类职责太重的问题，但由于工厂方法模式中的每个工厂只生产一类产品，可能会导致系统中存在大量的工厂类，势必会增加系统的开销。此时，可以考虑将一些相关的产品组成一个“产品族”，由同一个工厂来统一生产，这就是抽象工厂模式的基本思想。</p>
+<h5 id="概念-3"><a href="#概念-3" class="headerlink" title="概念"></a>概念</h5><blockquote>
+<p>提供一个创建一系列相关或相互依赖对象的接口，而无须指定它们具体的类。抽象工厂模式又称为Kit模式<br><img src="/2017/02/26/创建型设计模式/抽象工厂UML.png" alt="设计模式分类">   </p>
+</blockquote>
+<h5 id="优缺点-3"><a href="#优缺点-3" class="headerlink" title="优缺点"></a>优缺点</h5><p>优点：  </p>
+<ul>
+<li>隔离了具体类的生成，使得客户并不需要知道什么被创建。由于这种隔离，更换一个具体工厂就相对容易，所有的具体工厂都实现了再抽象工厂中声明的那些公共接口，因此只需要改变具体工厂的实例，就可以在某种程度上改变整个软件系统的行为</li>
+<li>当一个产品族中的多个对象被设计成一起工作时，它能够保证客户端始终只使用同一个产品族中的对象</li>
+<li>增加新的产品族很方便，无须修改已有系统，符合开闭原则</li>
+</ul>
+<p>缺点：  </p>
+<ul>
+<li>扩展新的产品麻烦，需要修改抽象工厂的接口</li>
+</ul>
+<h5 id="适用场景-3"><a href="#适用场景-3" class="headerlink" title="适用场景"></a>适用场景</h5><ul>
+<li>一个系统要独立于它的产品的创建、组合和表示时</li>
+<li>一个系统要由多个产品系列中的一个来配置时</li>
+<li>需要强调一系列相关的产品对象的设计以便进行联合使用时</li>
+<li>提供一个产品类库，而只想显示它们的接口而不是实现时<h4 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h4><h5 id="动机-4"><a href="#动机-4" class="headerlink" title="动机"></a>动机</h5>通过一个原型对象克隆出多个一模一样的对象<h5 id="概念-4"><a href="#概念-4" class="headerlink" title="概念"></a>概念</h5><blockquote>
+<p>使用原型实例指定创建对象的种类，并且通过克隆这些原型创建新的对象。<br><img src="/2017/02/26/创建型设计模式/原型模式UML.jpg" alt="设计模式分类">   </p>
+</blockquote>
+</li>
+</ul>
+<h5 id="优缺点-4"><a href="#优缺点-4" class="headerlink" title="优缺点"></a>优缺点</h5><p>优点：  </p>
+<ul>
+<li>提高实例的创建速度，方便调用者</li>
+<li>扩展性较好。由于在原型模式中提供了抽象原型类，在客户端可以针对抽象原型类进行编程，而将具体原型类写在配置文件中，增加或减少具体原型类对原有系统都没有任何影响。</li>
+<li>可以使用深克隆的方式保存对象的状态。使用原型模式将对象复制一份并将其状态保存起来，以便在需要的时候使用，例如恢复到某一历史状态，可辅助实现撤销操作。</li>
+</ul>
+<p>缺点：  </p>
+<ul>
+<li>克隆方法位于一个类的内部，当对已有的类进行改造时，需要修改源代码，违背了开闭原则</li>
+<li>实现深克隆时需要编写较为复杂的代码，而且当对象之间存在多重的嵌套引用时，为了实现深克隆，每一层对象对应的类都必须支持深克隆，实现起来可能会比较麻烦</li>
+</ul>
+<h5 id="适用场景-4"><a href="#适用场景-4" class="headerlink" title="适用场景"></a>适用场景</h5><p><em>
+</em><br>*</p>
+<h4 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h4><h5 id="动机-5"><a href="#动机-5" class="headerlink" title="动机"></a>动机</h5><blockquote>
+<p>没有人买车会只买一个轮胎或者方向盘，大家买的都是一辆包含轮胎、方向盘和发动机等多个部件的完整汽车。如何将这些部件组装成一辆完整的汽车并返回给用户，这是建造者模式需要解决的问题。</p>
+</blockquote>
+<h5 id="概念-5"><a href="#概念-5" class="headerlink" title="概念"></a>概念</h5><blockquote>
+<p>将一个复杂对象的创建与它的表示分离，使得同样的构建过程可以创建不同的表示。建造者模式又称为生成器模式。<br><img src="/2017/02/26/创建型设计模式/建造者模式UML.jpg" alt="设计模式分类">  </p>
+</blockquote>
+<h5 id="优缺点-5"><a href="#优缺点-5" class="headerlink" title="优缺点"></a>优缺点</h5><p>优点：</p>
+<ul>
+<li>在建造者模式中，客户端不必知道产品内部组成的细节，将产品本身与产品创建过程解耦，使得相同的创建过程可以创建不同的产品对象。</li>
+<li>每一个具体的建造者都相对独立，而与其它建造者无关，因此可以很方便地替换具体建造者或增加新的具体建造者，用户使用不同的具体建造者即可得到不同的产品对象。由于指挥者类针对抽象建造者编程，增加新的具体建造者无须修改原有类库的代码，系统扩展方便，符合开闭原则。</li>
+<li>可以更加惊喜地控制产品的创建过程。将复杂产品的创建步骤分解在不同的方法中，使得创建过程更加清晰，也更方便使用程序来控制创建过程。  </li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>如果不同的产品之间差异性很大，例如很多组成部分都不相同，就不适合使用建造者模式，建造者有其适用范围，即产品相似度较高。<h5 id="适用场景-5"><a href="#适用场景-5" class="headerlink" title="适用场景"></a>适用场景</h5></li>
+<li>需要生成的产品对象有复杂的内部结构，这些产品对象通常包含多个成员变量。</li>
+<li>需要生成的产品对象的属性相互依赖，需要指定其生成顺序。</li>
+<li>对象的创建过程独立于创建该对象的类。在建造者模式中通过引入指挥者类，将创建过程封装在指挥者类中，而不在建造者类和客户类中。</li>
+<li>隔离复杂对象的创建和使用，并使得相同的创建过程可以创建不同的产品。</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#设计模式"><span class="toc-number">1.</span> <span class="toc-text">设计模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建型模式"><span class="toc-number">1.1.</span> <span class="toc-text">创建型模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#单例模式"><span class="toc-number">1.1.1.</span> <span class="toc-text">单例模式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#动机"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">动机</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#概念"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#优缺点"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#适用场景"><span class="toc-number">1.1.1.4.</span> <span class="toc-text">适用场景</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#简单工厂"><span class="toc-number">1.1.2.</span> <span class="toc-text">简单工厂</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#动机-1"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">动机</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#概念-1"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#优缺点-1"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#适用场景-1"><span class="toc-number">1.1.2.4.</span> <span class="toc-text">适用场景</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#工厂方法"><span class="toc-number">1.1.3.</span> <span class="toc-text">工厂方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#动机-2"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">动机</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#概念-2"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#优缺点-2"><span class="toc-number">1.1.3.3.</span> <span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#适用场景-2"><span class="toc-number">1.1.3.4.</span> <span class="toc-text">适用场景</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#抽象工厂"><span class="toc-number">1.1.4.</span> <span class="toc-text">抽象工厂</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#动机-3"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">动机</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#概念-3"><span class="toc-number">1.1.4.2.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#优缺点-3"><span class="toc-number">1.1.4.3.</span> <span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#适用场景-3"><span class="toc-number">1.1.4.4.</span> <span class="toc-text">适用场景</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#原型模式"><span class="toc-number">1.1.5.</span> <span class="toc-text">原型模式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#动机-4"><span class="toc-number">1.1.5.1.</span> <span class="toc-text">动机</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#概念-4"><span class="toc-number">1.1.5.2.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#优缺点-4"><span class="toc-number">1.1.5.3.</span> <span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#适用场景-4"><span class="toc-number">1.1.5.4.</span> <span class="toc-text">适用场景</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#建造者模式"><span class="toc-number">1.1.6.</span> <span class="toc-text">建造者模式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#动机-5"><span class="toc-number">1.1.6.1.</span> <span class="toc-text">动机</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#概念-5"><span class="toc-number">1.1.6.2.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#优缺点-5"><span class="toc-number">1.1.6.3.</span> <span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#适用场景-5"><span class="toc-number">1.1.6.4.</span> <span class="toc-text">适用场景</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/02/26/创建型设计模式/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/02/26/创建型设计模式/&text=创建型设计模式"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/02/26/创建型设计模式/&title=创建型设计模式"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/02/26/创建型设计模式/&is_video=false&description=创建型设计模式"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=创建型设计模式&body=Check out this article: http://yoursite.com/2017/02/26/创建型设计模式/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/02/26/创建型设计模式/&title=创建型设计模式"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/02/26/创建型设计模式/&title=创建型设计模式"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/02/26/创建型设计模式/&title=创建型设计模式"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/02/26/创建型设计模式/&title=创建型设计模式"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/02/26/创建型设计模式/&name=创建型设计模式&description=&lt;p&gt;这一段要学习下设计模式，目前在看《设计模式的艺术之道》，读的过程中记录总结一下。&lt;/p&gt;
+&lt;h2 id=&quot;设计模式&quot;&gt;&lt;a href=&quot;#设计模式&quot; class=&quot;headerlink&quot; title=&quot;设计模式&quot;&gt;&lt;/a&gt;设计模式&lt;/h2&gt;&lt;p&gt;设计模式是什么？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在软件工程中，设计模式是对软件设计中普遍存在（反复出现）的各种问题，所提出的解决方案。这个术语是由埃里希·伽玛（Erich Gamma）等人在1990年代从建筑设计领域引入到计算机科学的。&lt;br&gt;设计模式并不直接用来完成代码的编写，而是在描述各种不同的情况下,要怎么解决问题的一种方案。面向对象设计模式通常以类别或对象描述其中的关系和相互作用，但不涉及用来完成应用程序的特定类别或对象。设计模式能使不稳定依赖于相对稳定、具体依赖于相对抽象，避免引起麻烦的紧耦合，以增强软件面对并适应变化的能力。&lt;/p&gt;
+&lt;/blockquote&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://yoursite.com/2017/02/26/创建型设计模式/&t=创建型设计模式"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2020
+    于木木
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-89789260-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Baidu Analytics -->
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?237cd7bbe979bebea6c6c345088eb8fb";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

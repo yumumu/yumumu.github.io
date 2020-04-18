@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="常用命令简单查询 show databases; 列出所有数据库 use databaseA;  select columnName from databaseA; select * from databaseA; select distinct vend_id from databaseA; 检索出vend_id列不同的值   select prod_name form products lim">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用sql命令">
+<meta property="og:url" content="http://yoursite.com/2017/01/03/mysql 语句/index.html">
+<meta property="og:site_name" content="于木木的笔记">
+<meta property="og:description" content="常用命令简单查询 show databases; 列出所有数据库 use databaseA;  select columnName from databaseA; select * from databaseA; select distinct vend_id from databaseA; 检索出vend_id列不同的值   select prod_name form products lim">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-04-18T12:34:59.069Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常用sql命令">
+<meta name="twitter:description" content="常用命令简单查询 show databases; 列出所有数据库 use databaseA;  select columnName from databaseA; select * from databaseA; select distinct vend_id from databaseA; 检索出vend_id列不同的值   select prod_name form products lim">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>常用sql命令</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/02/18/《iOS网络高级编程》读书总结/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/01/03/hello-world/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/01/03/mysql 语句/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/01/03/mysql 语句/&text=常用sql命令"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/01/03/mysql 语句/&title=常用sql命令"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/01/03/mysql 语句/&is_video=false&description=常用sql命令"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=常用sql命令&body=Check out this article: http://yoursite.com/2017/01/03/mysql 语句/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/01/03/mysql 语句/&title=常用sql命令"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/01/03/mysql 语句/&title=常用sql命令"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/01/03/mysql 语句/&title=常用sql命令"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/01/03/mysql 语句/&title=常用sql命令"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/01/03/mysql 语句/&name=常用sql命令&description=&lt;h4 id=&quot;常用命令&quot;&gt;&lt;a href=&quot;#常用命令&quot; class=&quot;headerlink&quot; title=&quot;常用命令&quot;&gt;&lt;/a&gt;常用命令&lt;/h4&gt;&lt;h5 id=&quot;简单查询&quot;&gt;&lt;a href=&quot;#简单查询&quot; class=&quot;headerlink&quot; title=&quot;简单查询&quot;&gt;&lt;/a&gt;简单查询&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;show databases; 列出所有数据库&lt;/li&gt;
+&lt;li&gt;use databaseA; &lt;/li&gt;
+&lt;li&gt;select columnName from databaseA;&lt;/li&gt;
+&lt;li&gt;select * from databaseA;&lt;/li&gt;
+&lt;li&gt;select distinct vend_id from databaseA; 检索出vend_id列不同的值  &lt;/li&gt;
+&lt;li&gt;select prod_name form products limit 5; 取前5个&lt;/li&gt;
+&lt;li&gt;select prod_name from products limit 5 offset 5; 从第6个开始取5个&lt;/li&gt;
+&lt;li&gt;select prod_name from products limit 3, 5; 第一个值对应limit值，第二个值是offset值&lt;/li&gt;
+&lt;/ul&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://yoursite.com/2017/01/03/mysql 语句/&t=常用sql命令"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#常用命令"><span class="toc-number">1.</span> <span class="toc-text">常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#简单查询"><span class="toc-number">1.1.</span> <span class="toc-text">简单查询</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#排序检索数据"><span class="toc-number">1.2.</span> <span class="toc-text">排序检索数据</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#高级数据过滤"><span class="toc-number">1.3.</span> <span class="toc-text">高级数据过滤</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#组合where子句"><span class="toc-number">1.4.</span> <span class="toc-text">组合where子句</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#in操作符号"><span class="toc-number">1.5.</span> <span class="toc-text">in操作符号</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NOT操作符"><span class="toc-number">2.</span> <span class="toc-text">NOT操作符</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用通配符进行过滤"><span class="toc-number"></span> <span class="toc-text">用通配符进行过滤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#百分号（-）通配符"><span class="toc-number">1.</span> <span class="toc-text">百分号（%）通配符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#下划线（-）通配符"><span class="toc-number">2.</span> <span class="toc-text">下划线（_）通配符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方括号-通配符"><span class="toc-number">3.</span> <span class="toc-text">方括号([ ])通配符</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#正如所见-SQL的通配符很有用。但这种功能是有代价的-即通配符搜索一般比前面讨论的其他搜索要耗费更长的处理时间。这里给出一些使用通配符时要记住的技巧。"><span class="toc-number">3.1.</span> <span class="toc-text">正如所见,SQL的通配符很有用。但这种功能是有代价的,即通配符搜索一般比前面讨论的其他搜索要耗费更长的处理时间。这里给出一些使用通配符时要记住的技巧。</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建计算字段"><span class="toc-number">4.</span> <span class="toc-text">创建计算字段</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#执行计算"><span class="toc-number">4.1.</span> <span class="toc-text">执行计算</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用数据处理函数"><span class="toc-number">5.</span> <span class="toc-text">使用数据处理函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数值处理函数"><span class="toc-number">6.</span> <span class="toc-text">数值处理函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#汇总数据"><span class="toc-number">7.</span> <span class="toc-text">汇总数据</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#聚集函数"><span class="toc-number">7.1.</span> <span class="toc-text">聚集函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#聚集不同值"><span class="toc-number">7.2.</span> <span class="toc-text">聚集不同值</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分组数据"><span class="toc-number">8.</span> <span class="toc-text">分组数据</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#创建分组"><span class="toc-number">8.1.</span> <span class="toc-text">创建分组</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#过滤分组"><span class="toc-number">8.2.</span> <span class="toc-text">过滤分组</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ORDER-BY-与-GROUP-BY"><span class="toc-number">8.3.</span> <span class="toc-text">ORDER BY 与 GROUP BY</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#select-子句顺序"><span class="toc-number">8.4.</span> <span class="toc-text">select 子句顺序</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#子查询"><span class="toc-number">9.</span> <span class="toc-text">子查询</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#联结表"><span class="toc-number"></span> <span class="toc-text">联结表</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#内联结"><span class="toc-number">0.1.</span> <span class="toc-text">内联结</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建高级联结"><span class="toc-number">1.</span> <span class="toc-text">创建高级联结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自联结"><span class="toc-number">2.</span> <span class="toc-text">自联结</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#使用带聚集函数的联结"><span class="toc-number">2.1.</span> <span class="toc-text">使用带聚集函数的联结</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#组合查询"><span class="toc-number">3.</span> <span class="toc-text">组合查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#插入数据"><span class="toc-number">4.</span> <span class="toc-text">插入数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#从一个表复制到另一个表"><span class="toc-number">5.</span> <span class="toc-text">从一个表复制到另一个表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#更新和删除数据"><span class="toc-number">6.</span> <span class="toc-text">更新和删除数据</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更新和删除的指导原则"><span class="toc-number"></span> <span class="toc-text">更新和删除的指导原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建和操作表"><span class="toc-number"></span> <span class="toc-text">创建和操作表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#表创建基础"><span class="toc-number">1.</span> <span class="toc-text">表创建基础</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#指定默认值"><span class="toc-number">2.</span> <span class="toc-text">指定默认值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#更新表"><span class="toc-number">3.</span> <span class="toc-text">更新表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#删除表"><span class="toc-number">4.</span> <span class="toc-text">删除表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重命名表"><span class="toc-number">5.</span> <span class="toc-text">重命名表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#视图"><span class="toc-number"></span> <span class="toc-text">视图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存储过程"><span class="toc-number"></span> <span class="toc-text">存储过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#管理事务处理"><span class="toc-number"></span> <span class="toc-text">管理事务处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#给系统添加订单的过程如下"><span class="toc-number">1.</span> <span class="toc-text">给系统添加订单的过程如下</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#控制事务处理"><span class="toc-number">2.</span> <span class="toc-text">控制事务处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用ROLLBACK"><span class="toc-number">3.</span> <span class="toc-text">使用ROLLBACK</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用COMMIT"><span class="toc-number">4.</span> <span class="toc-text">使用COMMIT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用保留点"><span class="toc-number">5.</span> <span class="toc-text">使用保留点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用游标"><span class="toc-number"></span> <span class="toc-text">使用游标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用游标-1"><span class="toc-number"></span> <span class="toc-text">使用游标</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#创建游标"><span class="toc-number">1.</span> <span class="toc-text">创建游标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用游标-2"><span class="toc-number">2.</span> <span class="toc-text">使用游标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关闭游标"><span class="toc-number">3.</span> <span class="toc-text">关闭游标</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高级SQL特性"><span class="toc-number"></span> <span class="toc-text">高级SQL特性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#约束"><span class="toc-number">1.</span> <span class="toc-text">约束</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#主键"><span class="toc-number">2.</span> <span class="toc-text">主键</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#外键"><span class="toc-number">3.</span> <span class="toc-text">外键</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#唯一约束"><span class="toc-number">4.</span> <span class="toc-text">唯一约束</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#检查约束"><span class="toc-number">5.</span> <span class="toc-text">检查约束</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#索引"><span class="toc-number">6.</span> <span class="toc-text">索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#触发器"><span class="toc-number">7.</span> <span class="toc-text">触发器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库安全"><span class="toc-number"></span> <span class="toc-text">数据库安全</span></a>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        常用sql命令
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">于木木的笔记</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2017-01-03T00:38:26.000Z" itemprop="datePublished">2017-01-03</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/DataBase/">DataBase</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><h5 id="简单查询"><a href="#简单查询" class="headerlink" title="简单查询"></a>简单查询</h5><ul>
+<li>show databases; 列出所有数据库</li>
+<li>use databaseA; </li>
+<li>select columnName from databaseA;</li>
+<li>select * from databaseA;</li>
+<li>select distinct vend_id from databaseA; 检索出vend_id列不同的值  </li>
+<li>select prod_name form products limit 5; 取前5个</li>
+<li>select prod_name from products limit 5 offset 5; 从第6个开始取5个</li>
+<li>select prod_name from products limit 3, 5; 第一个值对应limit值，第二个值是offset值</li>
+</ul>
+<a id="more"></a>
+<h5 id="排序检索数据"><a href="#排序检索数据" class="headerlink" title="排序检索数据"></a>排序检索数据</h5><blockquote>
+<p>ORDER BY子句的位置<br>在指定一条ORDER BY子句时,应该保证它是SELECT语句中最后一条子句。如果它不是最后的子句,将会出现错误消息。  </p>
+</blockquote>
+<blockquote>
+<p>通过非选择列进行排序<br>通常,ORDER BY子句中使用的列将是为显示而选择的列。但是,实际上并不一定要这样,用非检索的列排序数据是完全合法的。</p>
+</blockquote>
+<ul>
+<li>select prod_name from products order by prod_name;</li>
+<li>select prod_name from products order by prod_price;</li>
+</ul>
+<p>按多个列排序<br>先按prod_name排序,prod_name相同，再按prod_price排序</p>
+<ul>
+<li>select prod_id, prod_price, prod_name from products order by prod_name, prod_price;</li>
+</ul>
+<p>按列位置排序  </p>
+<ul>
+<li>select prod_id, prod_price, prod_name from products order by 2, 3;</li>
+<li>– 混合使用<br>select prod_id, prod_price, prod_name from products order by 2, prod_name;</li>
+</ul>
+<p>指定排序方向  </p>
+<ul>
+<li>select prod_id, prod_price, prod_name from products order by prod_price DESC;</li>
+<li>select prod_id, prod_price, prod_name from products order by prod_price desc, prod_name; – 多列排序</li>
+<li>select prod_id, prod_price, prod_name from products order by prod_price desc, prod_name desc;</li>
+</ul>
+<p>过滤数据</p>
+<ul>
+<li>select prod_name, prod_price from products where prod_price = 3.49;</li>
+<li>select prod_name, prod_price from products where prod_price = 3.49 order by prod_name desc;</li>
+</ul>
+<blockquote>
+<p>Waring: WHERE子句的位置<br>在同时使用ORDER BY和WHERE子句时,应该让ORDER BY位于WHERE之后,否则将会产生错误(关于ORDER BY的使用,请参阅第3 课)。</p>
+</blockquote>
+<p>where 子句操作符<br>操作符 | 说明<br>:—: | :—:<br>= | 等于<br>&lt;&gt; | 不等于<br>!= | 不等于<br>&lt; | 等于<br>&lt;= | 不等于<br>! | 不小于</p>
+<blockquote>
+<p>| 大于<br>= | 大于等于<br>!&gt; | 不大于<br>BETWEEN | 在指定的两个值之间<br>IS NULL | 为NULL值</p>
+</blockquote>
+<ul>
+<li>select prod_name, prod_price from products where prod_price &lt; 10;</li>
+<li>select vend_id, prod_name from products where vend_id &lt;&gt; ‘DLL01’; –字符串使用引号</li>
+<li>select vend_id, prod_price from products where vend_id != ‘DLL01’;–与上个例子效果相同</li>
+<li>select prod_name, prod_price from products where prod_price between 5 and 10; – 范围值</li>
+<li>select cust_name from customers where cust_email is null; – 空值检查</li>
+</ul>
+<h5 id="高级数据过滤"><a href="#高级数据过滤" class="headerlink" title="高级数据过滤"></a>高级数据过滤</h5><h5 id="组合where子句"><a href="#组合where子句" class="headerlink" title="组合where子句"></a>组合where子句</h5><ul>
+<li>select prod_id, prod_price, prod_name<br>from Products<br>where vend_id = ‘DLL01’ AND prod_price &lt;= 4;</li>
+<li>– 结合order by<br>select prod_id, prod_price, prod_name<br>from products<br>where vend_id = ‘DLL01’ and prod_price &lt;= 4 order by prod_name desc;</li>
+<li>select prod_name, prod_price from products<br>where vend_id = ‘DLL01’ or vend_id = ‘BRS01’;<br>#事实上,许多DBMS在OR WHERE子句的第一个条件得到满足的情况下,就不再计算第二个条件了(在第一个条件满足时,不管第二个条件是否满足,相应的行都将被检索出来)</li>
+<li>– 多个组合条件<br>select prod_name, prod_price, vend_id from products where (vend_id = ‘DLL01’ or vend_id = ‘brs01’) and prod_price &gt;= 10;<br>#上面组合条件用括号，否则vend_id满足条件了 prod_price &gt;= 10不会被执行</li>
+</ul>
+<h5 id="in操作符号"><a href="#in操作符号" class="headerlink" title="in操作符号"></a>in操作符号</h5><ul>
+<li>select prod_name, prod_price from products<br>where vend_id in (‘DLL01’, ‘BRS01’)<br>order by prod_name;</li>
+<li>select prod_name, prod_price from products<br>where vend_id = ‘DLL01’ or vend_id = ‘BRS01’<br>####上面两条sql语句效果相同</li>
+</ul>
+<h4 id="NOT操作符"><a href="#NOT操作符" class="headerlink" title="NOT操作符"></a>NOT操作符</h4><ul>
+<li>select prod_name, vend_id from products where not vend_id = ‘DLL)1’ order by prod_name;</li>
+<li>– 与上面等价<br>select prod_name, vend_id from products where vend_id &lt;&gt; ‘DLL01’ order by prod_name;</li>
+</ul>
+<h3 id="用通配符进行过滤"><a href="#用通配符进行过滤" class="headerlink" title="用通配符进行过滤"></a>用通配符进行过滤</h3><blockquote>
+<p>通配符（wildcard）<br>  用来匹配值的一部分的特殊字符。  </p>
+</blockquote>
+<blockquote>
+<p>搜索模式(search patter)<br>  由字面值、通配符或两者组合构成的搜索条件。  </p>
+</blockquote>
+<blockquote>
+<p>谓词(predicate)<br>  操作符何时不是操作符?答案是,它作为谓词时。从技术上说,LIKE是谓词而不是操作符。虽然最终的结果是相同的,但应该对此术语有所 了解,以免在SQL文献或手册中遇到此术语时不知所云。  </p>
+</blockquote>
+<p><strong>通配符搜索只能用于文本字段（串），非文本数据类型字段不能使用通配符搜索。</strong>  </p>
+<h4 id="百分号（-）通配符"><a href="#百分号（-）通配符" class="headerlink" title="百分号（%）通配符"></a>百分号（%）通配符</h4><blockquote>
+<p>需要特别注意，除了能匹配一个或多个字符外，%还能匹配0个字符。%代表搜索模式中给定位置的0个、1个或多个字符。  (根据DBMS的不同及其配置，搜索可以是区分大小写的。)</p>
+</blockquote>
+<ul>
+<li>–搜索以Fish开头的<br>select prod_id, prod_name from products where prod_name like ‘Fish%’;</li>
+<li>–匹配包含bean bag的字符串<br>select prod_id, prod_name from products where prod_name like ‘%bean bag%’;</li>
+<li>–匹配以F开头y结尾的字符串<br>select prod_id, prod_name from products where prod_name like ‘F%y’;  </li>
+</ul>
+<h4 id="下划线（-）通配符"><a href="#下划线（-）通配符" class="headerlink" title="下划线（_）通配符"></a>下划线（_）通配符</h4><blockquote>
+<p>下划线用途与%一样，但它只匹配<em>单个字符</em>，而不是多个字符。与%能匹配0个字符不同,_总是刚好匹配一个字符,不能多也不能少。</p>
+</blockquote>
+<ul>
+<li>select prod_id, prod_name from products where prod_name like ‘__ inch teddy bear’;  </li>
+<li>select prod_id, prod_name from products where prod_name like ‘_ inch teddy bear’;<br>#与上一个不同inch 前面匹配一个字符加一个空格，上面的是匹配两个字符。</li>
+<li>select prod_id, prod_name from products where prod_name like ‘__ inch teddy ‘;<br>#与上面两个不同，匹配以’ inch teddy ‘结尾的字符串。  </li>
+</ul>
+<h4 id="方括号-通配符"><a href="#方括号-通配符" class="headerlink" title="方括号([ ])通配符"></a>方括号([ ])通配符</h4><blockquote>
+<p>方括号([])通配符用来指定一个字符集,它必须匹配指定位置(通配符的位置)的一个字符。<br>说明:并不总是支持集合<br>与前面描述的通配符不一样,并不是所有DBMS都支持用来创建集合的[]。只有微软的Access和SQL Server支持集合。为确定你使用的 DBMS是否支持集合,请参阅相应的文档。</p>
+</blockquote>
+<ul>
+<li><p>select cust_contact from customers where cust_contact like ‘[JM]%’ order by cust_contact;<br>#此语句的WHERE子句中的模式为’[JM]%’。这一搜索模式使用了两个不同的通配符。[JM]匹配任何以方括号中字母开头的联系人名,它也只能匹 配单个字符。因此,任何多于一个字符的名字都不匹配。[JM]之后的%通配符匹配第一个字符之后的任意数目的字符,返回所需结果。</p>
+</li>
+<li><p>select cust_contact from customers where cust_contact like ‘[^JM]%’ order by cust_contact; – 查询匹配不以J或M起头的任意联系人名 与前一个例子相反。  </p>
+</li>
+<li>select cust_contact from customers where not cust_contact like ‘[JM]%’ order by cust_contact;</li>
+</ul>
+<h5 id="正如所见-SQL的通配符很有用。但这种功能是有代价的-即通配符搜索一般比前面讨论的其他搜索要耗费更长的处理时间。这里给出一些使用通配符时要记住的技巧。"><a href="#正如所见-SQL的通配符很有用。但这种功能是有代价的-即通配符搜索一般比前面讨论的其他搜索要耗费更长的处理时间。这里给出一些使用通配符时要记住的技巧。" class="headerlink" title="正如所见,SQL的通配符很有用。但这种功能是有代价的,即通配符搜索一般比前面讨论的其他搜索要耗费更长的处理时间。这里给出一些使用通配符时要记住的技巧。"></a>正如所见,SQL的通配符很有用。但这种功能是有代价的,即通配符搜索一般比前面讨论的其他搜索要耗费更长的处理时间。这里给出一些使用通配符时要记住的技巧。</h5><ul>
+<li>不要过度使用通配符。如果其他操作符能达到相同的目的,应该使用其他操作符。  </li>
+<li>在确实需要使用通配符时,也尽量不要把它们用在搜索模式的开始处。把通配符置于开始处,搜索起来是最慢的。  </li>
+<li>仔细注意通配符的位置。如果放错地方,可能不会返回想要的数据。  </li>
+</ul>
+<p>总之,通配符是一种极其重要和有用的搜索工具,以后我们经常会用到它。</p>
+<h4 id="创建计算字段"><a href="#创建计算字段" class="headerlink" title="创建计算字段"></a>创建计算字段</h4><blockquote>
+<p>字段(field)<br>  基本上与列(column)的意思相同，经常互换使用，不过数据库列一般称为列，而术语字段通常与计算字段一起使用。（需要特别注意,只有数据库知道SELECT语句中哪些列是实际的表列,哪些列是计算字段。从客户端(如应用程序)来看,计算字段的数据与其 他列的数据的返回方式相同。）  </p>
+</blockquote>
+<blockquote>
+<p><strong>提示:客户端与服务器的格式 在SQL语句内可完成的许多转换和格式化工作都可以直接在客户端应用程序内完成。但一般来说,在数据库服务器上完成这些操作比在客户 端中完成要快得多。</strong></p>
+</blockquote>
+<blockquote>
+<p>拼 接 ( concatenate)<br>    将值联结到一起(将一个值附加到另一个值)构成单个值。</p>
+</blockquote>
+<p><strong><em>解决办法是把两个列拼接起来。在SQL中的SELECT语句中,可使用一个特殊的操作符来拼接两个列。根据你所使用的DBMS,此操作符可用加 号(+)或两个竖杠(||)表示。在MySQL和MariaDB中,必须使用特殊的函数。<br>说明:是+还是||?<br>Access和SQL Server使用+号。DB2、Oracle、PostgreSQL、SQLite和Open Office Base使用||。详细请参阅具体的DBMS文档。</em></strong>  </p>
+<ul>
+<li>select vend_name + ‘(‘ + vend_country + ‘)’ from vendors order by vend_name;</li>
+<li>select vend_name || ‘(‘ + vend_country + ‘)’ from vendors order by vend_name;</li>
+<li>select RTRIM(vend_name) + ‘(‘ +RTRIM(vend_country) + ‘)’ from vendors order by vend_name;</li>
+</ul>
+<blockquote>
+<p>说明:TRIM函数<br>  大多数DBMS都支持RTRIM()(正如刚才所见,它去掉字符串右边的空格)、LTRIM()(去掉字符串左边的空格)以及TRIM()(去掉字符串 左右两边的空格)。</p>
+<ul>
+<li>– mysql 拼接字段<br>select (concat(vend_name, vend_country)) from vendors;</li>
+</ul>
+</blockquote>
+<h5 id="执行计算"><a href="#执行计算" class="headerlink" title="执行计算"></a>执行计算</h5><ul>
+<li>select prod_id, quantity, item_price, quantity*item_price as expanded_price from OrderItems where order_num = 20008;</li>
+</ul>
+<blockquote>
+<p>SQL算法操作符  </p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">操作符</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">  +</td>
+<td style="text-align:center">加</td>
+</tr>
+<tr>
+<td style="text-align:center">  -</td>
+<td style="text-align:center">减</td>
+</tr>
+<tr>
+<td style="text-align:center">  *</td>
+<td style="text-align:center">乘</td>
+</tr>
+<tr>
+<td style="text-align:center">  /</td>
+<td style="text-align:center">除</td>
+</tr>
+</tbody>
+</table>
+<h4 id="使用数据处理函数"><a href="#使用数据处理函数" class="headerlink" title="使用数据处理函数"></a>使用数据处理函数</h4><ul>
+<li>– 转大写<br>select vend_name, upper(vend_name) as vend_name from vendors order by vend_name;</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">函数</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">  LEFT(或使用字符串函数)</td>
+<td style="text-align:left">返回字符串左边的字符</td>
+</tr>
+<tr>
+<td style="text-align:left">  LENGTH(也使用DATALENGTH()或LEN())</td>
+<td style="text-align:left">返回字符串的长度</td>
+</tr>
+<tr>
+<td style="text-align:left">  LOWER()(Access使用LCASE())</td>
+<td style="text-align:left">将字符串转为小写</td>
+</tr>
+<tr>
+<td style="text-align:left">  LTRIM()</td>
+<td style="text-align:left">去掉字符串左边的空格</td>
+</tr>
+<tr>
+<td style="text-align:left">    RIGHT()(或使用字符串函数)</td>
+<td style="text-align:left">返回字符串右边的字符</td>
+</tr>
+<tr>
+<td style="text-align:left">  RTRIM()</td>
+<td style="text-align:left">去掉字符串右边的空格</td>
+</tr>
+<tr>
+<td style="text-align:left">  SOUNDEX()</td>
+<td style="text-align:left">返回字符串的SOUNDEX值</td>
+</tr>
+<tr>
+<td style="text-align:left">  UPPER(Access使用UCASE())</td>
+<td style="text-align:left">将字符串转为大写</td>
+</tr>
+</tbody>
+</table>
+<h4 id="数值处理函数"><a href="#数值处理函数" class="headerlink" title="数值处理函数"></a>数值处理函数</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">函数</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">  ABS()</td>
+<td style="text-align:left">返回一个数的绝对值</td>
+</tr>
+<tr>
+<td style="text-align:left">  COS()</td>
+<td style="text-align:left">返回一个角度的余弦</td>
+</tr>
+<tr>
+<td style="text-align:left">  EXP()</td>
+<td style="text-align:left">返回一个数的指数值</td>
+</tr>
+<tr>
+<td style="text-align:left">  PI()</td>
+<td style="text-align:left">返回圆周率</td>
+</tr>
+<tr>
+<td style="text-align:left">    SIN()</td>
+<td style="text-align:left">返回一个角度的正弦</td>
+</tr>
+<tr>
+<td style="text-align:left">  SQRT()</td>
+<td style="text-align:left">返回一个数的平方根</td>
+</tr>
+<tr>
+<td style="text-align:left">  TAN()</td>
+<td style="text-align:left">返回一个角度的正切</td>
+</tr>
+</tbody>
+</table>
+<h4 id="汇总数据"><a href="#汇总数据" class="headerlink" title="汇总数据"></a>汇总数据</h4><h5 id="聚集函数"><a href="#聚集函数" class="headerlink" title="聚集函数"></a>聚集函数</h5><ul>
+<li>确定表中行数（或者满足某个条件或包含某个特定值的行数）</li>
+<li>获得表中某些行的和</li>
+<li>找出表列（或所有行或某些特定的行）的最大值、最小值、平均值。</li>
+</ul>
+<blockquote>
+<p>聚集函数(aggregate function)<br>  函数 | 说明<br>:— | :—<br>  AVG()   |  返回某列的平均值<br>  COUNT()  |  返回某列的行数<br>  MAX()   |  返回某列的最大值<br>  MIN()   |  返回某列的最小值<br>  SUM()   |  返回某列之和</p>
+</blockquote>
+<ul>
+<li>– 返回vend_id = ‘DLL01’的价格的平均值<br>select avg(prod_price) as avg_price from products where vend_id = ‘DLL01’;<ul>
+<li>– 返回Customers表中顾客的总数<br>select count(*) as num_cust from customers;<blockquote>
+<p><strong><strong>说明:NULL值 如果指定列名,则COUNT()函数会忽略指定列的值为空的行,但如果COUNT()函数中用的是星号(*),则不忽略。</strong></strong></p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>提示:对非数值数据使用MAX()<br>虽然MA X()一般用来找出最大的数值或日期值,但许多(并非所有)DBMS允许将它用来返回任意列中的最大值,包括返回文本列中的最大 值。在用于文本数据时,MA X()返回按该列排序后的最后一行。<br>说明:NULL值 MAX()函数忽略列值为NULL的行。</p>
+</blockquote>
+<blockquote>
+<p>提示:对非数值数据使用MIN() 虽然MIN()一般用来找出最小的数值或日期值,但许多(并非所有)DBMS允许将它用来返回任意列中的最小值,包括返回文本列中的最小 值。在用于文本数据时,MIN()返回该列排序后最前面的行。<br>说明:NULL值<br>MIN()函数忽略列值为NULL的行。</p>
+</blockquote>
+<ul>
+<li>select sum(order_num) from orderitems where order_item = 5;  <blockquote>
+<p>提示:在多个列上进行计算 如本例所示,利用标准的算术操作符,所有聚集函数都可用来执行多个列上的计算。</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>说明:NULL值 SUM()函数忽略列值为NULL的行。</p>
+</blockquote>
+<h5 id="聚集不同值"><a href="#聚集不同值" class="headerlink" title="聚集不同值"></a>聚集不同值</h5><ul>
+<li>– 获取指定供应商不同价格的平均值<br>select AVG(DISTINCT prod_price) as avg_price from produts where vend_id = ‘DLL01’;</li>
+<li>– 包含多个聚集函数<br>select count(*) as num_items,<br>min(prod_price) as price_min,<br>max(prod_price) as price_max,<br>avg(prod_price) as price_avg<br>from products;</li>
+</ul>
+<blockquote>
+<p>小结<br>  聚集函数用来汇总数据。SQL支持5个聚集函数,可以用多种方法使用它们,返回所需的结果。这些函数很高效,它们返回结果一般比你在自己 的客户端应用程序中计算要快得多。  </p>
+</blockquote>
+<h4 id="分组数据"><a href="#分组数据" class="headerlink" title="分组数据"></a>分组数据</h4><h5 id="创建分组"><a href="#创建分组" class="headerlink" title="创建分组"></a>创建分组</h5><ul>
+<li>select vend_id, count(*) as num_prods<br>from products<br>group by vend_id;</li>
+</ul>
+<p>在使用GROUP BY子句前,需要知道一些重要的规定。</p>
+<ul>
+<li>GROUP BY子句可以包含任意数目的列,因而可以对分组进行嵌套,更细致地进行数据分组。</li>
+<li>如果在GROUP BY子句中嵌套了分组,数据将在最后指定的分组上进行汇总。换句话说,在建立分组时,指定的所有列都一起计算(所以 不能从个别的列取回数据)。</li>
+<li>GROUP BY子句中列出的每一列都必须是检索列或有效的表达式(但不能是聚集函数)。如果在SELECT中使用表达式,则必须在GROUP BY子句中指定相同的表达式。不能使用别名。</li>
+<li>大多数SQL实现不允许GROUP BY列带有长度可变的数据类型(如文本或备注型字段)。 除聚集计算语句外,SELECT语句中的每一列都必须在GROUP BY子句中给出。</li>
+<li>如果分组列中包含具有NULL值的行,则NULL将作为一个分组返回。如果列中有多行NULL值,它们将分为一组。</li>
+<li>GROUP BY子句必须出现在WHERE子句之后,ORDER BY子句之前。</li>
+</ul>
+<h5 id="过滤分组"><a href="#过滤分组" class="headerlink" title="过滤分组"></a>过滤分组</h5><blockquote>
+<p>提示:HAVING支持所有WHERE操作符<br>在第4课和第5课中,我们学习了WHERE子句的条件(包括通配符条件和带多个操作符的子句)。学过的这些有关WHERE的所有技术和选项 都适用于HAVING。它们的句法是相同的,只是关键字有差别。</p>
+</blockquote>
+<blockquote>
+<p>说明:HAVING和WHERE的差别<br>这里有另一种理解方法,WHERE在数据分组前进行过滤,HAVING在数据分组后进行过滤。这是一个重要的区别,WHERE排除的行不包括 在分组中。这可能会改变计算值,从而影响HAVING子句中基于这些值过滤掉的分组。</p>
+</blockquote>
+<ul>
+<li><p>select cust_id, count(<em>) as orders<br>from orders<br>group by cust_id<br>having count(</em>) &gt;= 2;<br>– 它过滤COUNT(*) &gt;= 2(两个以上订单)的那些分组。  </p>
+</li>
+<li><p>– 面的例子,它列出具有两个以上产品且其价格大于等于4的供应商,这条语句中,第一行是使用了聚集函数的基本SELECT语句,很像前面的例子。WHERE子句过滤所有prod_price至少为4的行,然后按vend_id分 组数据,HAVING子句过滤计数为2或2以上的分组。如果没有WHERE子句,就会多检索出一行(供应商DLL01,销售4个产品,价格都在4以 下):<br>select vend_id, count(*) as num_prods<br>from products<br>where prod_price &gt;= 4<br>group by vend_id<br>having count(*) &gt;= 2;</p>
+</li>
+</ul>
+<blockquote>
+<p>说明:使用HAVING和WHERE<br>HAVING与WHERE非常类似,如果不指定GROUP BY,则大多数DBMS会同等对待它们。不过,你自己要能区分这一点。使用HAVING时应 该结合GROUP BY子句,而WHERE子句用于标准的行级过滤。</p>
+</blockquote>
+<h5 id="ORDER-BY-与-GROUP-BY"><a href="#ORDER-BY-与-GROUP-BY" class="headerlink" title="ORDER BY 与 GROUP BY"></a>ORDER BY 与 GROUP BY</h5><table>
+<thead>
+<tr>
+<th style="text-align:left">ORDER BY</th>
+<th style="text-align:left">GROUP BY</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">对产生的输出排序</td>
+<td style="text-align:left">进行分组，但输出可能不是分组的排序</td>
+</tr>
+<tr>
+<td style="text-align:left">任意列都可以使用</td>
+<td style="text-align:left">只可能使用选择列或表达式列,而且必须使用每个选择列表达式</td>
+</tr>
+<tr>
+<td style="text-align:left">不一定需要</td>
+<td style="text-align:left">如果与聚集函数一起使用列(或表达式),则必须使用  </td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>– 检索包含三个或更多物品的订单号和订购物品的数目<br>select order_num, count(*) as items<br>from orderitems<br>group by order_num<br>having count(*) &gt;= 3;</p>
+</li>
+<li><p>– 按订购物品数目排序<br>select order_num, count(<em>) as items<br>from orderitems<br>group by order_num<br>having count(\</em>) &gt;= 3<br>order by items;<br>– 书上为order by item, order_num; 有没有order_num效果一样，不知道为什么加order_num???</p>
+</li>
+</ul>
+<h5 id="select-子句顺序"><a href="#select-子句顺序" class="headerlink" title="select 子句顺序"></a>select 子句顺序</h5><table>
+<thead>
+<tr>
+<th style="text-align:left">子句</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">是否必须使用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">SELECT</td>
+<td style="text-align:left">要返回的列或表达式</td>
+<td style="text-align:left">是</td>
+</tr>
+<tr>
+<td style="text-align:left">FROM</td>
+<td style="text-align:left">从中检索数据的表</td>
+<td style="text-align:left">仅在从表选择数据时使用</td>
+</tr>
+<tr>
+<td style="text-align:left">WHERE</td>
+<td style="text-align:left">行级过滤</td>
+<td style="text-align:left">否</td>
+</tr>
+<tr>
+<td style="text-align:left">GROUP BY</td>
+<td style="text-align:left">分组说明</td>
+<td style="text-align:left">仅在按组计算聚集时使用</td>
+</tr>
+<tr>
+<td style="text-align:left">HAVING</td>
+<td style="text-align:left">组级过滤</td>
+<td style="text-align:left">否 </td>
+</tr>
+<tr>
+<td style="text-align:left">ORDER BY</td>
+<td style="text-align:left">输出排序顺序</td>
+<td style="text-align:left">否</td>
+</tr>
+</tbody>
+</table>
+<h4 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h4><blockquote>
+<p>查询(query)<br>  任何SQL语句都是查询。但此术语一般值SELECT语句。<br>  SQL语句还允许创建子查询（subquery）, 即嵌套在其它查询中查询。</p>
+</blockquote>
+<ul>
+<li>SELECT cust_id FROM Orders<br>WHERE order_num IN(SELECT order_num FROM OrderItems WHERE prod_id = ‘RGAN01’);  <blockquote>
+<p>分析上面的例子:<br>在SELECT语句中,子查询总是从内向外处理。在处理上面的SELECT语句时,DBMS实际上执行了两个操作。 首先执行下面的查询：<br>SELECT order_num FROM orderitems WHERE prod_id=’RGAN01’<br>此查询返回两个订单号:20007和20008。然后,这两个值以IN操作符要求的逗号分隔的格式传递给外部查询的WHERE子句。外部查询变成:<br>SELECT cust_id FROM orders WHERE order_num IN (20007,20008)</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>在WHERE子句中使用子查询能够编写出功能很强且很灵活的SQL语句。对于能嵌套的子查询的数目没有限制,不过在实际使用时由于性能的限制,不能嵌套太多的子查询。  </p>
+<ul>
+<li>警告：只能是单列<br>作为子查询的SELECT语句只能查询单个列。企图检索多个列将返回错误。  </li>
+<li>警告：子查询和性能<br>这里给出的代码有效,并且获得了所需的结果。但是,使用子查询并不总是执行这类数据检索的最有效方法。更多的论述,请参阅第12课, 其中将再次给出这个例子。</li>
+</ul>
+</blockquote>
+<h3 id="联结表"><a href="#联结表" class="headerlink" title="联结表"></a>联结表</h3><ul>
+<li>select vend_name, prod_name, prod_price<br>from vendors, products where vendors.vend_id = products.vend_id;<blockquote>
+<p>完全限定列名<br>就像前一课提到的,在引用的列可能出现歧义时,必须使用完全限定列名(用一个句点分隔表名和列名)。如果引用一个没有用表名限制的<br>具有歧义的列名,大多数DBMS会返回错误。  </p>
+</blockquote>
+</li>
+</ul>
+<h5 id="内联结"><a href="#内联结" class="headerlink" title="内联结"></a>内联结</h5><ul>
+<li>select vend_name, prod_name, prod_price<br>from vendors inner join products<br>on vendors.vend_id = products.vend_id;  </li>
+</ul>
+<blockquote>
+<p>说明:“正确的”语法<br>ANSI SQL规范首选INNER JOIN语法,之前使用的是简单的等值语法。其实,SQL语言纯正论者是用鄙视的眼光看待简单语法的。这就是 说,DBMS的确支持简单格式和标准格式,我建议你要理解这两种格式,具体使用就看你用哪个更顺手了。</p>
+</blockquote>
+<h4 id="创建高级联结"><a href="#创建高级联结" class="headerlink" title="创建高级联结"></a>创建高级联结</h4><h4 id="自联结"><a href="#自联结" class="headerlink" title="自联结"></a>自联结</h4><ul>
+<li>select c1.cust_id, c1.cust_name, c1.cust_contact<br>from customers as c1, customers as c2<br>where c1.cust_name = c2.cust_name<br>and c2.cust_contact = ‘Jim Jones’;</li>
+</ul>
+<p>####自然联结</p>
+<blockquote>
+<p>无论何时对表进行联结,应该至少有一列不止出现在一个表中(被联结的列)。标准的联结(前一课中介绍的内联结)返回所有数据,相同的<br>列甚至多次出现。自然联结排除多次出现,使每一列只返回一次。</p>
+<ul>
+<li>select C.*, O.order_num, O.order_date,<br>OI.prod_id, OI.quantity, OI.item_price<br>from Customers AS C, Order AS O, OrderItems AS OI WHERE C.cust_id = O.cust_id<br>AND OI.order_num = O.order_num<br>AND prod_id = ‘RGAN01’;  </li>
+</ul>
+</blockquote>
+<ul>
+<li>select customers.cust_id, orders.order_num<br>from customers right outer join orders<br>on orders.cust_id = customers.cust_id</li>
+</ul>
+<ul>
+<li>– 一个简单的内联结<br>– 检索所有顾客及订单<br>select customers.cust_id, orders.order_num<br>from customers inner join orders<br>on customers.cust_id = orders.cust_id;  </li>
+<li><p>– 检索包括没有订单在内的所有顾客<br>– 外联结<br>select customers.cust_id, orders.order_num<br>from customers left outer join orders<br>on customers.cust_id = orders.cust_id;  </p>
+</li>
+<li><p>– 从右边的表中选择所有行，需要使用right outer join<br>select customers.cust_id, orders.order_num<br>from customers right outer join orders<br>on orders.cust_id = customers.cust_id;  </p>
+<blockquote>
+<p>警告:SQLite外联结<br>SQLite支持LEFT OUTER JOIN,但不支持RIGHT OUTER JOIN。幸好,如果你确实需要在SQLite中使用RIGHT OUTER JOIN,有一种更简单的办法,这将在下面的提示中介绍。<br>提示：外联结的类型<br>要记住,总是有两种基本的外联结形式:左外联结和右外联结。它们之间的唯一差别是所关联的表的顺序。换句话说,调整FROM或WHERE子句中表的顺序,左外联结可以转换为右外联结。因此,这两种外联结可以互换使用,哪个方便就用哪个。  </p>
+</blockquote>
+</li>
+</ul>
+<h5 id="使用带聚集函数的联结"><a href="#使用带聚集函数的联结" class="headerlink" title="使用带聚集函数的联结"></a>使用带聚集函数的联结</h5><ul>
+<li>select customers.cust_id,<br>count(orders.order_num) as num_ord<br>from customers inner join orders<br>on customers.cust_id = orders.cust_id<br>group by customers.cust_id;  </li>
+</ul>
+<blockquote>
+<p><strong>联结及其使用要点</strong>  </p>
+<ul>
+<li>注意所使用的联结类型。一般我们使用内联结,但使用外联结也有效。</li>
+<li>关于确切的联结语法,应该查看具体的文档,看相应的DBMS支持何种语法(大多数DBMS使用这两课中描述的某种语法)。</li>
+<li>保证使用正确的联结条件(不管采用哪种语法),否则会返回不正确的数据。</li>
+<li>应该总是提供联结条件,否则会得出笛卡儿积。</li>
+<li>在一个联结中可以包含多个表,甚至可以对每个联结采用不同的联结类型。虽然这样做是合法的,一般也很有用,但应该在一起测试它们前分别测试每个联结。这会使故障排除更为简单。</li>
+</ul>
+</blockquote>
+<h4 id="组合查询"><a href="#组合查询" class="headerlink" title="组合查询"></a>组合查询</h4><p> 一下两台sql等价</p>
+<ul>
+<li>– 使用union<br>select cust_name, cust_contact, cust_email<br>from customers<br>where cust_state in(‘IL’, ‘In’, ‘Mi’)<br>union<br>select cust_name, cust_contact, cust_email<br>from customers<br>where cust_name = ‘Fun4All’;<ul>
+<li>– 使用多条where子句<br>select cust_name, cust_contact, cust_email<br>from customers<br>where cust_state in (‘IL’, ‘IN’, ‘MI’)<br>or cust_name = ‘Fun4All’;  </li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>说明<br>  在这个简单的例子中,使用UNION可能比使用WHERE子句更为复杂。但对于较复杂的过滤条件,或者从多个表(而不是一个表)中检索数据的情形,使用UNION可能会使处理更简单。</p>
+</blockquote>
+<blockquote>
+<p>警告：性能问题<br>  多数好的DBMS使用内部查询优化程序,在处理各条SELECT语句前组合它们。理论上讲,这意味着从性能上看使用多条WHERE子句条件还 是UNION应该没有实际的差别。不过我说的是理论上,实践中多数查询优化程序并不能达到理想状态,所以最好测试一下这两种方法,看哪 种工作得更好。  </p>
+</blockquote>
+<ul>
+<li>– 使用union<br>  select cust_name, cust_contact, cust_email<br>  from customers<br>  where cust_state in(‘IL’, ‘In’, ‘Mi’)<br>  union all<br>  select cust_name, cust_contact, cust_email<br>  from customers<br>  where cust_name = ‘Fun4All’;  <blockquote>
+<p>使用union all, DBMS不取消重复的行。  </p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>提示:UNION与WHERE<br>这一课一开始我们说过,UNION几乎总是完成与多个WHERE条件相同的工作。UNION ALL为UNION的一种形式,它完成WHERE子句完成不 了的工作。如果确实需要每个条件的匹配行全部出现(包括重复行),就必须使用UNION ALL,而不是WHERE。  </p>
+</blockquote>
+<ul>
+<li>– 对组合查询结果排序<br> select cust_name, cust_contact, cust_email<br> from customers<br> where cust_state in(‘IL’, ‘In’, ‘Mi’)<br> union<br> select cust_name, cust_contact, cust_email<br> from customers<br> where cust_name = ‘Fun4All’<br> order by cust_name, cust_contact;  </li>
+</ul>
+<h4 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h4><p>三种插入方式</p>
+<ul>
+<li>插入完整的行</li>
+<li>插入行的一部分</li>
+<li>插入某些查询的结果</li>
+</ul>
+<blockquote>
+<p>提示：插入及系统安全<br>使用INSERT语句可能需要客户端/服务器DBMS中的特定安全权限。在试图使用INSERT前，应该保证自己有足够的安全权限。   </p>
+</blockquote>
+<ul>
+<li>INSERT INTO Customers VALUES(‘1000000006’,<br>‘Toy Land’,<br>‘123 Any Street’, ‘New York’,<br>‘NY’,<br>‘11111’,<br>‘USA’,<br>NULL,<br>NULL);  </li>
+<li><p>INSERT INTO Customers(cust_id, cust_name,<br>cust_address, cust_city, cust_state, cust_zip, cust_country, cust_contact, cust_email)<br>VALUES(‘1000000006’, ‘Toy Land’,<br>‘123 Any Street’, ‘New York’,<br>‘NY’,<br>‘11111’,<br>‘USA’, NULL, NULL);  </p>
+<blockquote>
+<p>提示：总是使用列的列表<br>不要使用没有明确给出列的INSERT语句。给出列能使SQL代码继续发挥作用，即使表结构发生了变化。<br>警告：小心使用VALUES<br>不管不管使用哪种INSERT语法,VALUES的数目都必须正确。如果不提供列名,则必须给每个表列提供一个值;如果提供列名,则必须给列出的 每个列一个值。否则,就会产生一条错误消息,相应的行不能成功插入。  </p>
+</blockquote>
+</li>
+<li><p>– 插入部分行<br>insert into customers(cust_id,<br>cust_name,<br>cust_address,<br>cust_city,<br>cust_state,<br>cust_state,<br>cust_zip,<br>cust_country)<br>values(‘100000006’,<br>‘Toy land’,<br>‘123 Any Street’,<br>‘New York’,<br>‘NY’,<br>‘111111’,<br>‘USA’);</p>
+<blockquote>
+<p>警告：省略列<br>如果表的定义允许，则可以在INSERT操作中省略某些列。省略的列必须满足以下某个条件。</p>
+</blockquote>
+</li>
+<li>该列定义为允许NULL值（无值或空值）。</li>
+<li><p>在表定义中给出默认值。这表示如果不给出值，将使用默认值。</p>
+<blockquote>
+<p>警告：省略所需的值<br>如果对表中不允许NULL值且没有默认值的列不给出值，DBMS将产生错误消息，并且相应的行插入不成功。  </p>
+</blockquote>
+</li>
+<li><p>– 把另一表中的顾客列合并到Customers表中<br>INSERT INTO Customers(cust_id, cust_contact,<br>cust_email, cust_name, cust_address, cust_city, cust_state, cust_zip, cust_country)<br>SELECT cust_id,cust_contact, cust_email, cust_name, cust_address, cust_city, cust_state, cust_zip, cust_country<br>FROM CustNew;</p>
+</li>
+</ul>
+<blockquote>
+<p>提示：INSERT SELECT中的列名<br>  为简单起见,这个例子在INSERT和SELECT语句中使用了相同的列名。但是,不一定要求列名匹配。事实上,DBMS一点儿也不关心SELECT返回的列名。它使用的是列的位置,因此SELECT中的第一列(不管其列名)将用来填充表列中指定的第一列,第二列将用来填充 表列中指定的第二列,如此等等。<br>  INSERT SELECT中SELECT语句可以包含WHERE子句,以过滤插入的数据。<br>提示：插入多行<br> INSERT通常只插入一行。要插入多行,必须执行多个INSERT语句。INSERT SELECT是个例外,它可以用一条INSERT插入多行,不 管SELECT语句返回多少行,都将被INSERT插入。  </p>
+</blockquote>
+<h4 id="从一个表复制到另一个表"><a href="#从一个表复制到另一个表" class="headerlink" title="从一个表复制到另一个表"></a>从一个表复制到另一个表</h4><p> 有一种数据插入不使用INSERT语句。要将一个表的内容复制到一个全新的表(运行中创建的表),可以使用SELECT INTO语句。<br> 与INSERT SELECT将数据添加到一个已经存在的表不同,SELECT INTO将数据复制到一个新表(有的DBMS可以覆盖已经存在的表,这依赖于 所使用的具体DBMS)。  </p>
+<blockquote>
+<p>说明：INSERT SELECT与SELECT INTO<br> 它们之前的一个重要差别是前者导出数据，而后者导入数据。</p>
+</blockquote>
+<ul>
+<li>select * into custcopy<br> from customers; – 部分数据库使用该语法<ul>
+<li>create table custcopy as<br>select * from customers; – 部分数据库使用该语法</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>在使用select into时，需要知道一些事情  </p>
+<ul>
+<li>任何SELECT选项和子句都可以使用,包括WHERE和GROUP BY;</li>
+<li>可利用联结从多个表插入数据;</li>
+<li>不管从多少个表中检索数据,数据都只能插入到一个表中。  </li>
+</ul>
+</blockquote>
+<blockquote>
+<p>提示：进行表的复制<br>SELECT INTO是试验新SQL语句前进行表复制的很好工具。先进行复制,可在复制的数据上测试SQL代码,而不会影响实际的数据。  </p>
+</blockquote>
+<h4 id="更新和删除数据"><a href="#更新和删除数据" class="headerlink" title="更新和删除数据"></a>更新和删除数据</h4><p>更新(修改)表中的数据,可以使用UPDA TE语句。有两种使用UPDA TE的方式:</p>
+<ul>
+<li>更新表中的特定行;</li>
+<li>更新表中的所有行。</li>
+</ul>
+<blockquote>
+<p>警告：不要省略where子句<br>在使用update/delete时一定要细心。因为稍不注意，就会更新表中的所有行。<br>提示：UPDATE/delete与安全<br>在客户端/服务器的DBMS中,使用UPDATE/delete语句可能需要特殊的安全权限。在你使用UPDATE/delete前,应该保证自己有足够的安全权限。</p>
+</blockquote>
+<p>基本的UPDATE语句由三部分组成，分别是：</p>
+<ul>
+<li>要更新的表；</li>
+<li>列名和它们的新值；</li>
+<li><p>确定要更新哪些行的过滤条件。</p>
+</li>
+<li><p>update customers<br>set cust_email = <a href="mailto:&#39;kim@thetoystore.com" target="_blank" rel="noopener">&#39;kim@thetoystore.com</a>‘<br>where cust_id = ‘1000000005’;</p>
+</li>
+<li><p>update customers<br>set cust_contact = ‘Sam Roberts’,<br>cust_email = <a href="mailto:&#39;sam@toyland.com" target="_blank" rel="noopener">&#39;sam@toyland.com</a>‘<br>where cust_id = ‘1000000006’;  </p>
+</li>
+<li><p>– 要删除某个列的值，可设置它为NULL（假如表定义允许NULL值）<br>update customers<br>set cust_email = NULL<br>where cust_id = ‘1000000005’;<br>其中NULL用来去除cust_email列中的值。这与保存空字符串很不同(空字符串用’’表示,是一个值),而NULL表示没有值。</p>
+</li>
+</ul>
+<p>从一个表中删除（去掉）数据，使用DELETE语句。有两种使用DELETE的方式:</p>
+<ul>
+<li>从表中删除特定的行。</li>
+<li>从表中删除所有行。</li>
+</ul>
+<blockquote>
+<p>提示:友好的外键<br>第12课介绍了联结,简单联结两个表只需要这两个表中的常用字段。也可以让DBMS通过使用外键来严格实施关系(这些定义在附录A中)。存在外键时,DBMS使用它们实施引用完整性。例如要向Products表中插入一个新产品,DBMS不允许通过未知的供应商id插入它,因为vend_id列是作为外键连接到Vendors表的。那么,这与DELETE有什么关系呢?使用外键确保引用完整性的一个好处是,DBMS通常可 以防止删除某个关系需要用到的行。例如,要从Products表中删除一个产品,而这个产品用在OrderItems的已有订单中,那么DELETE语句将抛出错误并中止。这是总要定义外键的另一个理由。  </p>
+</blockquote>
+<blockquote>
+<p>提示:FROM关键字<br>在某些SQL实现中,跟在DELETE后的关键字FROM是可选的。但是即使不需要,也最好提供这个关键字。这样做将保证SQL代码在DBMS之 间可移植。</p>
+</blockquote>
+<blockquote>
+<p>提示:更快的删除<br>如果想从表中删除所有行,不要使用DELETE。可使用TRUNCATE TABLE语句,它完成相同的工作,而速度更快(因为不记录数据的变 动)。</p>
+</blockquote>
+<h3 id="更新和删除的指导原则"><a href="#更新和删除的指导原则" class="headerlink" title="更新和删除的指导原则"></a>更新和删除的指导原则</h3><p>下面是许多SQL程序员使用UPDATE或DELETE时所遵循的重要原则。</p>
+<ul>
+<li>除非确实打算更新和删除每一行,否则绝对不要使用不带WHERE子句的UPDA TE或DELETE语句。</li>
+<li>保证每个表都有主键(如果忘记这个内容,请参阅第12课),尽可能像WHERE子句那样使用它(可以指定各主键、多个值或值的范 围)。</li>
+<li>在UPDA TE或DELETE语句使用WHERE子句前,应该先用SELECT进行测试,保证它过滤的是正确的记录,以防编写的WHERE子句不正 确。</li>
+<li>使用强制实施引用完整性的数据库(关于这个内容,请参阅第12课),这样DBMS将不允许删除其数据与其他表相关联的行。 有的DBMS允许数据库管理员施加约束,防止执行不带WHERE子句的UPDA TE或DELETE语句。如果所采用的DBMS支持这个特性,应该 使用它。<blockquote>
+<p>若是SQL没有撤销(undo)按钮,应该非常小心地使用UPDA TE和DELETE,否则你会发现自己更新或删除了错误的数据。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="创建和操作表"><a href="#创建和操作表" class="headerlink" title="创建和操作表"></a>创建和操作表</h3><p>SQL不仅用于表数据操纵,还用来执行数据库和表的所有操作,包括表本身的创建和处理。 一般有两种创建表的方法:</p>
+<ul>
+<li>多数DBMS都具有交互式创建和管理数据库表的工具;</li>
+<li>表也可以直接用SQL语句操纵。  </li>
+</ul>
+<p>用程序创建表,可以使用SQL的CREATE TABLE语句。需要注意的是,使用交互式工具时实际上就是使用SQL语句。这些语句不是用户编写 的,界面工具会自动生成并执行相应的SQL语句(更改已有的表时也是这样)。</p>
+<h4 id="表创建基础"><a href="#表创建基础" class="headerlink" title="表创建基础"></a>表创建基础</h4><p>利用CREATE TABLE创建表,必须给出下列信息:  </p>
+<ul>
+<li>新表的名字,在关键字CREATE TABLE之后给出;</li>
+<li>表列的名字和定义,用逗号分隔;</li>
+<li><p>有的DBMS还要求指定表的位置。  </p>
+</li>
+<li><p>CREATE TABLE Products (<br>prod_id<br>vend_id<br>prod_name<br>prod_price<br>prod_desc VARCHAR(1000) NULL<br>);  </p>
+</li>
+</ul>
+<blockquote>
+<p>提示:语句格式化<br>回想一下在SQL语句中忽略的空格。语句可以在一个长行上输入,也可以分成许多行,它们没有差别。这样,你就可以用最适合自己的方式 安排语句的格式。前面的CREATE TABLE语句就是SQL语句格式化的一个好例子,代码安排在多个行上,列定义进行了恰当的缩进,更易阅 读和编辑。以何种格式安排SQL语句并没有规定,但我强烈推荐采用某种缩进格式。  </p>
+</blockquote>
+<blockquote>
+<p>提示:替换现有的表<br>在创建新的表时,指定的表名必须不存在,否则会出错。防止意外覆盖已有的表,SQL要求首先手工删除该表(请参阅后面的内容),然后 再重建它,而不是简单地用创建表语句覆盖它。 </p>
+</blockquote>
+<ul>
+<li>CREATE TABLE Orders (<br>order_num  integer    not null,<br>order_date datetime   not null,<br>cust_id   char(10)    not null<br>);<blockquote>
+<p>这条语句创建本书中所用的Orders表。Orders包含三列:订单号、订单日期和顾客ID。这三列都需要,因此每一列的定义都含有关键 字NOT NULL。这就会阻止插入没有值的列。如果插入没有值的列,将返回错误,且插入失败。</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>警告:指定NULL<br>在不指定NOT NULL时,多数DBMS认为指定的是NULL,但不是所有的DBMS都这样。DB2要求指定关键字NULL,如果不指定将出错。关于完整的语法信息,请参阅具体的DBMS文档。  </p>
+</blockquote>
+<blockquote>
+<p>提示:主键和NULL值 第1课介绍过,主键是其值唯一标识表中每一行的列。只有不允许NULL值的列可作为主键,允许NULL值的列不能作为唯一标识。  </p>
+</blockquote>
+<blockquote>
+<p>警告:理解NULL 不要把NULL值与空字符串相混淆。NULL值是没有值,不是空字符串。如果指定’’(两个单引号,其间没有字符),这在NOT NULL列中是允 许的。空字符串是一个有效的值,它不是无值。NULL值用关键字NULL而不是空字符串指定。</p>
+</blockquote>
+<h4 id="指定默认值"><a href="#指定默认值" class="headerlink" title="指定默认值"></a>指定默认值</h4><ul>
+<li>CREATE TABLE OrderItems<br>(<br>  order_num   integer  not null,<br>  order_item  integer  not null,<br>  prod_id     char(10)    not null,<br>  quantity    integer     not null    default 1,<br>  item_price  deciaml(8, 2)   not null<br>)<blockquote>
+<p> 分析， 上面的语句创建OrderItems表,包含构成订单的各项(订单本身存储在Orders表中)。quantity列为订单中每个物品的数量。在这个例子中,这一列的描述增加了DEFAULT 1,指示DBMS,如果不给出数量则使用数量1。 </p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>默认值经常用于日期或时间戳列。<br>不同DBMS获得系统日期方法  </p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">DBMS</th>
+<th style="text-align:left">函数/变量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"> Access</td>
+<td style="text-align:left">NOW()</td>
+</tr>
+<tr>
+<td style="text-align:left"> DB2</td>
+<td style="text-align:left">CURRENT_DATE</td>
+</tr>
+<tr>
+<td style="text-align:left"> MySQL</td>
+<td style="text-align:left">CURRENT_DATE()</td>
+</tr>
+<tr>
+<td style="text-align:left"> Oracle</td>
+<td style="text-align:left">SYSDATE</td>
+</tr>
+<tr>
+<td style="text-align:left"> PostgreSQL</td>
+<td style="text-align:left">CURRENT_DATE</td>
+</tr>
+<tr>
+<td style="text-align:left"> SQL Server</td>
+<td style="text-align:left">GETDATE()</td>
+</tr>
+<tr>
+<td style="text-align:left"> SQLite</td>
+<td style="text-align:left">date(‘now’)  </td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>提示：使用DEFAULT值而不是NULL值<br> 许多数据库开发人员喜欢使用DEFAULT值而不是NULL列，对于用于计算或数据分组的列更是如此</p>
+</blockquote>
+<h4 id="更新表"><a href="#更新表" class="headerlink" title="更新表"></a>更新表</h4><p> 更新表定义,可以使用ALTER TABLE语句。虽然所有的DBMS都支持ALTER TABLE,但它们所允许更新的内容差别很大。以下是使用 ALTER TABLE时需要考虑的事情。</p>
+<ul>
+<li>理想情况下，不要在表中包含数据时对其进行更新。应该在表的设计过程中充分考虑未来可能的需求，避免今后对的结构做大改动。</li>
+<li>所有的DBMS都允许给现有的表增加列,不过对所增加列的数据类型(以及NULL和DEFAULT的使用)有所限制。</li>
+<li>许多DBMS不允许删除或更改表中的列。</li>
+<li>多数DBMS允许重新命名表中的列。</li>
+<li>许多DBMS限制对已经填有数据的列进行更改，对未填有数据的列几乎没有限制。</li>
+</ul>
+<ul>
+<li>– 增加列<br>alter table vendors<br>add vend_phone char(20);</li>
+<li>– 删除列<br>alter table vendors<br>drop column vend_phone;</li>
+</ul>
+<p>复杂的表结构一般需要手动删除过程，它涉及一下步骤：  </p>
+<ol>
+<li>用新的列布局创建一个新表</li>
+<li>使用 insert select 语句从旧表复制数据到新表。有必要的话，可以使用转换函数和计算字段。</li>
+<li>检验包含所需数据的新表；</li>
+<li>重命名旧表（如果确定，可以删除它）；</li>
+<li>用旧表原来的名字重命名新表；</li>
+<li>根据需要，重新创建触发器、存储过程、索引和外键。</li>
+</ol>
+<blockquote>
+<p>说明:ALTER TABLE和SQLite<br>SQLite对使用ALTER TABLE执行的操作有所限制。最重要的一个限制是,它不支持使用ALTER TABLE定义主键和外键,这些必须在最初创 建表时指定。</p>
+</blockquote>
+<blockquote>
+<p>警告:小心使用ALTER TABLE<br>使用ALTER TABLE要极为小心,应该在进行改动前做完整的备份(模式和数据的备份)。数据库表的更改不能撤销,如果增加了不需要的列,也许无法删除它们。类似地,如果删除了不应该删除的列,可能会丢失该列中的所有数据。  </p>
+</blockquote>
+<h4 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h4><ul>
+<li>drop table custcopy;  <blockquote>
+<p>提示:使用关系规则防止意外删除<br>许多DBMS允许强制实施有关规则,防止删除与其他表相关联的表。在实施这些规则时,如果对某个表发布一条DROP TABLE语句,且该表 是某个关系的组成部分,则DBMS将阻止这条语句执行,直到该关系被删除为止。如果允许,应该启用这些选项,它能防止意外删除有用的表。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="重命名表"><a href="#重命名表" class="headerlink" title="重命名表"></a>重命名表</h4><blockquote>
+<p>每个DBMS对表重命名的支持有所不同。对于这个操作,不存在严格的标准。DB2、MariaDB、MySQL、Oracle和PostgreSQL用户使用RENAME语句,SQL Server用户使用sp_rename存储过程,SQLite用户使用ALTER TABLE语句。 所有重命名操作的基本语法都要求指定旧表名和新表名。不过,存在DBMS实现差异。关于具体的语法,请参阅相应的DBMS文档。</p>
+</blockquote>
+<h3 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h3><ul>
+<li>创建视图<br>create view (用于创建不存在的视图)</li>
+<li>删除视图<br>drop view viewname  <blockquote>
+<p>覆盖（或更新）视图，必须先删除它，然后再重新创建  </p>
+</blockquote>
+</li>
+</ul>
+<h3 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h3><blockquote>
+<p>简单来说，存储过程就是为以后使用而保存的一条或多条SQL语句。可将其视为批文件，虽然它们的作用不仅限于批处理。  </p>
+</blockquote>
+<h3 id="管理事务处理"><a href="#管理事务处理" class="headerlink" title="管理事务处理"></a>管理事务处理</h3><blockquote>
+<p> 使用事务处理(transaction processing)，通过确保成批的SQL操作要么完全执行，要么完全不执行，来维护数据库的完整性。  </p>
+</blockquote>
+<h4 id="给系统添加订单的过程如下"><a href="#给系统添加订单的过程如下" class="headerlink" title="给系统添加订单的过程如下"></a>给系统添加订单的过程如下</h4><ol>
+<li>检查数据库是否存在相应的顾客，如果不存在，添加他；  </li>
+<li>检索顾客的ID；</li>
+<li>在Orders表中添加一行，它与顾客ID相关联；</li>
+<li>检索Orders表中赋予的新订单ID；</li>
+<li>为订购的每个物品在OrderItems表中添加一行，通过检索出来的ID把它与Orders表相关联（并且通过产品ID与Products表关联）</li>
+</ol>
+<blockquote>
+<p><strong><em>事务处理是一种机制，用来管理必须成批执行的SQL操作，保证数据库不包含不完整的操作结果。利用事务处理，可以保证一组操作不会中途停止，它们要么完全执行，要么完全不执行（除非明确指示）。如果没有错误发生，整组语句提交给（写到）数据库表；如果发生错误，则进行回退（撤销），将数据库恢复到某个已知且安全的状态。</em></strong></p>
+</blockquote>
+<p>再看这个例子，这次我们说明这一过程是如何工作的：</p>
+<ol>
+<li>检查数据库中是否存在相应的顾客,如果不存在,添加他; </li>
+<li>提交顾客信息;</li>
+<li>检索顾客的ID;</li>
+<li>在Orders表中添加一行;</li>
+<li>如果向Orders表添加行时出现故障,回退;</li>
+<li>检索Orders表中赋予的新订单ID;</li>
+<li>对于订购的每项物品,添加新行到OrderItems表;</li>
+<li>如果向OrderItems添加行时出现故障,回退所有添加的OrderItems行和Orders行。</li>
+</ol>
+<p><strong><em>关于事务处理的几个术语</em></strong></p>
+<ul>
+<li>事务（transaction）指一组SQL语句；</li>
+<li>回退（rollback）指撤销指定SQL语句的过程；</li>
+<li>提交（commit）指将未存储的SQL语句结果写入数据库表；</li>
+<li>保留点（savepoint）指事务处理中设置的临时占位符（placeholder），可以对它发布回退（与回退整个事务处理不同）</li>
+</ul>
+<blockquote>
+<p>提示：可以回退哪些语句？<br>事务处理用来管理insert、update和delete语句。不能回退select语句（回退select语句）也没有必要，也不能回退create或drop操作。事务处理中可以使用这些语句，但进行回退时，这些操作也不撤销。</p>
+</blockquote>
+<h4 id="控制事务处理"><a href="#控制事务处理" class="headerlink" title="控制事务处理"></a>控制事务处理</h4><blockquote>
+<p>警告：事务处理实现的差异<br>不同DBMS用来实现事务处理的语法有所不同。在使用事务处理时应该参阅相应的DBMS文档。  </p>
+</blockquote>
+<p>管理事务的关键在于将SQL语句组分解为逻辑块，并明确规定数据何时应该回退，何时不应该回退。</p>
+<p>BEGIN/START/SET TRANSACTION<br>…<br>END TRANSACTION(部分DBMS有，部分DBMS没有)  </p>
+<h4 id="使用ROLLBACK"><a href="#使用ROLLBACK" class="headerlink" title="使用ROLLBACK"></a>使用ROLLBACK</h4><p>DELETE FROM Orders;<br>ROLLBACK;  </p>
+<blockquote>
+<p>分析，在事务处理块中，DELETE操作（与INSERT和UPDATE操作一样）并不是最终的结果。  </p>
+</blockquote>
+<h4 id="使用COMMIT"><a href="#使用COMMIT" class="headerlink" title="使用COMMIT"></a>使用COMMIT</h4><p>一般的SQL语句都是针对数据库直接执行和编写的。这就是所谓的隐式提交（implicit commit）,即提交（写或保存）操作是自动进行的。在事务处理块中，提交不会隐式进行。不过，不同DBMS按隐式提交处理事务端，有的则不这样。</p>
+<h4 id="使用保留点"><a href="#使用保留点" class="headerlink" title="使用保留点"></a>使用保留点</h4><p>要支持回退部分事务，必须在事务处理块中的合适位置放置占位符。这样，如果需要回退，可以回退到某个占位符。在SQL中，这些占位符称为保留点。</p>
+<blockquote>
+<p>SAVEPOINT语句：<br>SAVEPOINT delete1；<br>SAVE TRANSACTION delete1;<br>回滚<br>ROLLBACK TRANSACTION delete1;<br>ROLLBACK TO delete1;</p>
+</blockquote>
+<p>一个完整的SQL Server例子：<br>BEGIN TRANSACTION<br>INSERT INTO Customers(cust_id, cust_name)<br>VALUES(‘1000000010’, ‘Toys Emporium’);<br>SAVE TRANSACTION StartOrder;<br>INSERT INTO Orders(order_num, order_date, cust_id) VALUES(20100,’2001/12/1’,’1000000010’);<br>IF @@ERROR &lt;&gt; 0 ROLLBACK TRANSACTION StartOrder;<br>INSERT INTO OrderItems(order_num, order_item, prod_id, quantity, item_price) VALUES(20100, 1, ‘BR01’, 100, 5.49);<br>IF @@ERROR &lt;&gt; 0 ROLLBACK TRANSACTION StartOrder;<br>INSERT INTO OrderItems(order_num, order_item, prod_id, quantity, item_price) VALUES(20100, 2, ‘BR03’, 100, 10.99);<br>IF @@ERROR &lt;&gt; 0 ROLLBACK TRANSACTION StartOrder;<br>COMMIT TRANSACTION  </p>
+<blockquote>
+<p>提示：保留点越多越好<br>可以在SQL代码中设置任意多的保留点。保留点越多，越能灵活地进行回退。</p>
+</blockquote>
+<h3 id="使用游标"><a href="#使用游标" class="headerlink" title="使用游标"></a>使用游标</h3><blockquote>
+<p>结果集（result set）<br>SQL查询所检索出的结果  </p>
+</blockquote>
+<p>有时,需要在检索出来的行中前进或后退一行或多行,这就是游标的用途所在。游标(cursor)是一个存储在DBMS服务器上的数据库查询,<br>它不是一条SELECT语句,而是被该语句检索出来的结果集。在存储了游标之后,应用程序可以根据需要滚动或浏览其中的数据。</p>
+<blockquote>
+<p>说明:具体DBMS的支持<br>Microsoft Access不支持游标,所以本课的内容不适用于Microsoft Access。<br>MySQL 5已经支持存储过程。因此,本课的内容不适用MySQL较早的版本。<br>SQLite支持的游标称为步骤(step),本课讲述的基本概念适用于SQLite的步骤,但语法可能完全不同。  </p>
+</blockquote>
+<p>不同的DBMS支持不同的游标选项和特性。常见的一些选项和特性如下。  </p>
+<ul>
+<li>能够标记游标为只读,使数据能读取,但不能更新和删除。</li>
+<li>能控制可以执行的定向操作(向前、向后、第一、最后、绝对位置、相对位置等)。</li>
+<li>能标记某些列为可编辑的,某些列为不可编辑的。<br>规定范围,使游标对创建它的特定请求(如存储过程)或对所有请求可访问。</li>
+<li>指示DBMS对检索出的数据(而不是指出表中活动数据)进行复制,使数据在游标打开和访问期间不变化。  </li>
+</ul>
+<p>游标主要用于交互式应用，其中应用需要滚动屏幕上的数据，并对数据进行浏览或作出更改。</p>
+<h3 id="使用游标-1"><a href="#使用游标-1" class="headerlink" title="使用游标"></a>使用游标</h3><p>使用游标涉及几个明确的步骤:</p>
+<ul>
+<li>在使用游标前,必须声明(定义)它。这个过程实际上没有检索数据,它只是定义要使用的SELECT语句和游标选项。  </li>
+<li>一旦声明,就必须打开游标以供使用。这个过程用前面定义的SELECT语句把数据实际检索出来。  </li>
+<li>对于填有数据的游标,根据需要取出(检索)各行。   </li>
+<li>在结束游标使用时,必须关闭游标,可能的话,释放游标(有赖于具体的DBMS)。  </li>
+</ul>
+<p>声明游标后,可根据需要频繁地打开和关闭游标。在游标打开时,可根据需要频繁地执行取操作。</p>
+<h4 id="创建游标"><a href="#创建游标" class="headerlink" title="创建游标"></a>创建游标</h4><p>DECLARE CustCursor CURSOR FOR<br>SELECT * FROM Customers WHERE cust_email IS NULL </p>
+<h4 id="使用游标-2"><a href="#使用游标-2" class="headerlink" title="使用游标"></a>使用游标</h4><p>OPEN CURSOR CustCursor</p>
+<blockquote>
+<p>现在可以用FETCH语句访问游标数据了。FETCH指出要检索哪些行,从何处检索它们以及将它们放于何处(如变量名)。第一个例子使用 Oracle语法从游标中检索一行(第一行):<br>DECLARE TYPE CustCursor IS REF CURSOR RETURN Customers%ROWTYPE;<br>DECLARE CustRecord Customers%ROWTYPE BEGIN<br>OPEN CustCursor;<br>FETCH CustCursor INTO CustRecord; CLOSE CustCursor;<br>END;  </p>
+</blockquote>
+<h4 id="关闭游标"><a href="#关闭游标" class="headerlink" title="关闭游标"></a>关闭游标</h4><p>CLOSE CustCursor  </p>
+<blockquote>
+<p>分析▼ CLOSE语句用来关闭游标。一旦游标关闭,如果不再次打开,将不能使用。第二次使用它时不需要再声明,只需用OPEN打开它即可。  </p>
+</blockquote>
+<h3 id="高级SQL特性"><a href="#高级SQL特性" class="headerlink" title="高级SQL特性"></a>高级SQL特性</h3><h4 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h4><p>关联表和引用完整性已经在前面讨论过几次。正如所述,关系数据库存储分解为多个表的数据,每个表存储相应的数据。利用键来建立从一个表到另一个表的引用(由此产生了术语引用完整性(referential integrity))。<br>正确地进行关系数据库设计,需要一种方法保证只在表中插入合法数据。例如,如果Orders表存储订单信息,OrderItems表存储订单详细内<br>容,应该保证OrderItems中引用的任何订单ID都存在于Orders中。类似地,在Orders表中引用的任意顾客必须存在于Customers表中。  </p>
+<p>虽然可以在插入新行时进行检查(在另一个表上执行SELECT,以保证所有值合法并存在),但最好不要这样做,原因如下:  </p>
+<ul>
+<li>如果在客户端层面上实施数据库完整性规则,则每个客户端都要被迫实施这些规则,一定会有一些客户端不实施这些规则。</li>
+<li>在执行UPDA TE和DELETE操作时,也必须实施这些规则。</li>
+<li>执行客户端检查是非常耗时的,而DBMS执行这些检查会相对高效。</li>
+</ul>
+<blockquote>
+<p>约束(constraint)<br>管理如何插入或处理数据库数据的规则。  </p>
+</blockquote>
+<p>DBMS通过在数据库表上施加约束来实施引用完整性。大多数约束是在表定义中定义的,</p>
+<blockquote>
+<p>注意:具体DBMS的约束 有几种不同类型的约束,每个DBMS都提供自己的支持。因此,这里给出的例子在不同的DBMS上可能有不同的反应。在进行试验之前,请 参阅具体的DBMS文档。  </p>
+</blockquote>
+<h4 id="主键"><a href="#主键" class="headerlink" title="主键"></a>主键</h4><p>表中任意列只要满足以下条件，都可以用于主键：</p>
+<ul>
+<li>任意两行的主键值都不相同。</li>
+<li>每行都具有一个主键值（即列中不允许NULL值）。</li>
+<li>包含主键值的列从不修改或更新。</li>
+<li>主键值不能重用。如果从表中删除某一行，其主键值不分配给新行。</li>
+</ul>
+<blockquote>
+<p>– 给表的vend_id列添加关键字primary key,使其成为主键。<br>alter table vendors<br>add constraint primary key(vend_id);  </p>
+</blockquote>
+<blockquote>
+<p>说明:SQLite中的键<br>SQLite不允许使用ALTERTABLE定义键,要求在初始的CREATE TABLE语句中定义它们。  </p>
+</blockquote>
+<h4 id="外键"><a href="#外键" class="headerlink" title="外键"></a>外键</h4><p>外键是表中的一列，其值必须在另一表的主键中。外键是保证引用完整性的极其重要部分。  </p>
+<ul>
+<li><p>– 定义外键<br>create table orders<br>(<br>  order_num   integer  not null primary key,<br>  order_date  datetime    not null,<br>  cust_id     char(10)    not null references customers(cust_id)<br>)</p>
+<blockquote>
+<p>分析<br>上面的例子定义了orders表的外键，它表示cust_id的任何值必须是customers表的cust_id的值。  </p>
+</blockquote>
+</li>
+<li><p>– 相同的工作也可以在alter table 语句中用constraint语法来完成。<br>alter table orders<br>add constraint<br>foreign key(cust_id) references customers(cust_id)  </p>
+</li>
+</ul>
+<blockquote>
+<p>提示：外键有助防止意外删除<br>如第6课所述,除帮助保证引用完整性外,外键还有另一个重要作用。在定义外键后,DBMS不允许删除在另一个表中具有关联行的行。例如,不能删除关联订单的顾客。删除该顾客的唯一方法是首先删除相关的订单(这表示还要删除相关的订单项)。由于需要一系列的删除, 因而利用外键可以防止意外删除数据。<br>有的DBMS支持称为级联删除(cascading delete)的特性。如果启用,该特性在从一个表中删除行时删除所有相关的数据。例如,如果启 用级联删除并且从Customers表中删除某个顾客,则任何关联的订单行也会被自动删除。</p>
+</blockquote>
+<h4 id="唯一约束"><a href="#唯一约束" class="headerlink" title="唯一约束"></a>唯一约束</h4><p>唯一约束用来保证一列(或一组列)中的数据是唯一的。它们类似于主键,但存在以下重要区别。</p>
+<ul>
+<li>表中可以包含多个唯一约束，但每个表中只允许一个主键。</li>
+<li>唯一约束列可包含NULL值。</li>
+<li>唯一约束列可修改或更新。</li>
+<li>唯一约束列的值可重复使用。</li>
+<li>与主键不一样，唯一约束不能用来定义外键。</li>
+</ul>
+<blockquote>
+<p>唯一约束的语法类似于其他约束的语法。唯一约束既可以用UNIQUE关键字在表定义中定义,也可以用单独的CONSTRAINT定义。  </p>
+</blockquote>
+<h4 id="检查约束"><a href="#检查约束" class="headerlink" title="检查约束"></a>检查约束</h4><p>检查约束用来保证一列（或一组列）中的数据满足一组指定的条件。检查约束的常见用途有一下几点。  </p>
+<ul>
+<li>检查最小或最大值。例如，防止0个物品的订单（即使0是合法的数）。</li>
+<li>指定范围。例如，保证发货日期大于等于今天的日期，但不超过今天起一年后的日期。  </li>
+<li>只允许特定的值。例如，在性别字段中只允许M或F。  </li>
+</ul>
+<p>换句话说,第1课介绍的数据类型限制了列中可保存的数据的类型。检查约束在数据类型内又做了进一步的限制,这些限制极其重要,可以确保 插入数据库的数据正是你想要的数据。不需要依赖于客户端应用程序或用户来保证正确获取它,DBMS本身将会拒绝任何无效的数据。  </p>
+<ul>
+<li><p>– 保证所有物品的数量大于0<br>create table orderitems<br>(<br>  order_num integer not null,<br>  order_item integer not null,<br>  prod_id    char(10) not null,<br>  quantity   integer  not null check(quantity &gt; 0),<br>  item_price  money not null<br>)</p>
+<blockquote>
+<p>利用这个约束,任何插入(或更新)的行都会被检查,保证quantity大于0。</p>
+</blockquote>
+</li>
+<li><p>– 检查名为gender的列只包含M或F，可编写如下的alter table语句：<br>add constraint check(gender like ‘[MF]’)  </p>
+</li>
+</ul>
+<blockquote>
+<p>提示:用户定义数据类型<br>有的DBMS允许用户定义自己的数据类型。它们是定义检查约束(或其他约束)的基本简单数据类型。例如,你可以定义自己的名为gender的数据类型,它是单字符的文本数据类型,带限制其值为M或F(对于未知值或许还允许NULL)的检查约束。然后,可以将此数据 类型用于表的定义。定制数据类型的优点是只需施加约束一次(在数据类型定义中),而每当使用该数据类型时,都会自动应用这些约束。 请查阅相应的DBMS文档,看它是否支持自定义数据类型。</p>
+</blockquote>
+<h4 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h4><p>在开始创建索引之前，应该记住一下内容：  </p>
+<ul>
+<li>索引改善检索操作的性能,但降低了数据插入、修改和删除的性能。在执行这些操作时,DBMS必须动态地更新索引。  </li>
+<li>索引数据可能要占用大量的存储空间。  </li>
+<li>并非所有数据都适合做索引。取值不多的数据(如州)不如具有更多可能值的数据(如姓或名),能通过索引得到那么多的好处。  </li>
+<li>引用于数据过滤和数据排序。如果你经常以某种特定的顺序排序数据,则该数据可能适合做索引。  </li>
+<li><p>可以在索引中定义多个列(例如,州加上城市)。这样的索引仅在以州加城市的顺序排序时有用。如果想按城市排序,则这种索引没有用处。  </p>
+</li>
+<li><p>create index prod_name_inx<br>on products(prod_name);  </p>
+<blockquote>
+<p>分析<br>索引必须唯一命名。这里的索引名prod_name_ind在关键字CREATE INDEX之后定义。ON用来指定被索引的表,而索引中包含的列(此例中仅 有一列)在表名后的圆括号中给出。  </p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>提示：检查索引<br>索引的效率随表数据的增加或改变而变化。许多数据库管理员发现,过去创建的某个理想的索引经过几个月的数据处理后可能变得不再理想。最好定期检查索引，并根据需要对索引进行调整。  </p>
+</blockquote>
+<h4 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h4><p>触发器是特殊的存储过程,它在特定的数据库活动发生时自动执行。触发器可以与特定表上的INSERT、UPDA TE和DELETE操作(或组合)相关联。  </p>
+<p>与存储过程不一样(存储过程只是简单的存储SQL语句),触发器与单个的表相关联。与Orders表上的INSERT操作相关联的触发器只在Orders表中插入行时执行。类似地,Customers表上的INSERT和UPDATE操作的触发器只在表上出现这些操作时执行。  </p>
+<p>触发器内的代码具有以下数据的访问权:  </p>
+<ul>
+<li>INSERT操作中的所有新数据;</li>
+<li>UPDA TE操作中的所有新数据和旧数据;</li>
+<li>DELETE操作中删除的数据。</li>
+</ul>
+<p>根据所使用的DBMS的不同,触发器可在特定操作执行之前或之后执行。  </p>
+<p>下面是触发器的一些常见用途。  </p>
+<ul>
+<li>保证数据一致。例如,在INSERT或UPDA TE操作中将所有州名转换为大写。  </li>
+<li>基于某个表的变动在其他表上执行活动。例如,每当更新或删除一行时将审计跟踪记录写入某个日志表。</li>
+<li>进行额外的验证并根据需要回退数据。例如,保证某个顾客的可用资金不超限定,如果已经超出,则阻塞插入。</li>
+<li>计算计算列的值或更新时间戳。  </li>
+</ul>
+<p>读者可能已经注意到了,不同DBMS的触发器创建语法差异很大,更详细的信息请参阅相应的文档。</p>
+<p>下面的例子创建一个触发器,它对所有INSERT和UPDA TE操作,将Customers表中的cust_state列转换为大写。<br>这是本例子的SQL Server版本:<br>CREATE TRIGGER customer_state ON Customers<br>FOR INSERT, UPDATE<br>AS<br>UPDATE Customers<br>SET cust_state = Upper(cust_state)<br>WHERE Customers.cust_id = inserted.cust_id;  </p>
+<p>这是本例子的Oracle和PostgreSQL的版本:<br>CREATE TRIGGER customer_state<br>AFTER INSERT OR UPDATE<br>FOR EACH ROW<br>BEGIN<br>UPDATE Customers<br>SET cust_state = Upper(cust_state)<br>WHERE Customers.cust_id = :OLD.cust_id END;  </p>
+<blockquote>
+<p>提示：约束比触发器更快<br>一般来说，约束的处理比触发器快，因此在可能的时候，应该尽量使用约束。 </p>
+</blockquote>
+<h3 id="数据库安全"><a href="#数据库安全" class="headerlink" title="数据库安全"></a>数据库安全</h3><p>一般说来,需要保护的操作有:</p>
+<ul>
+<li>对数据库管理功能功能（创建表、更改或删除已存在的表等）的访问；  </li>
+<li>对特定数据库或表的访问；  </li>
+<li>访问的类型（只读、对特定列的访问等）；  </li>
+<li>仅通过视图或存储过程对表进行访问；  </li>
+<li>创建多层次的安全措施，从而允许多种基于登录的访问和控制；</li>
+<li>限制管理用户账号的能力。  </li>
+</ul>
+<p>安全性使用SQL的GRANT和REVOKE语句来管理,不过,大多数DBMS提供了交互式的管理实用程序,这些实用程序在内部使 用GRANT和REVOKE语句。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#常用命令"><span class="toc-number">1.</span> <span class="toc-text">常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#简单查询"><span class="toc-number">1.1.</span> <span class="toc-text">简单查询</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#排序检索数据"><span class="toc-number">1.2.</span> <span class="toc-text">排序检索数据</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#高级数据过滤"><span class="toc-number">1.3.</span> <span class="toc-text">高级数据过滤</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#组合where子句"><span class="toc-number">1.4.</span> <span class="toc-text">组合where子句</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#in操作符号"><span class="toc-number">1.5.</span> <span class="toc-text">in操作符号</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NOT操作符"><span class="toc-number">2.</span> <span class="toc-text">NOT操作符</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用通配符进行过滤"><span class="toc-number"></span> <span class="toc-text">用通配符进行过滤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#百分号（-）通配符"><span class="toc-number">1.</span> <span class="toc-text">百分号（%）通配符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#下划线（-）通配符"><span class="toc-number">2.</span> <span class="toc-text">下划线（_）通配符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方括号-通配符"><span class="toc-number">3.</span> <span class="toc-text">方括号([ ])通配符</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#正如所见-SQL的通配符很有用。但这种功能是有代价的-即通配符搜索一般比前面讨论的其他搜索要耗费更长的处理时间。这里给出一些使用通配符时要记住的技巧。"><span class="toc-number">3.1.</span> <span class="toc-text">正如所见,SQL的通配符很有用。但这种功能是有代价的,即通配符搜索一般比前面讨论的其他搜索要耗费更长的处理时间。这里给出一些使用通配符时要记住的技巧。</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建计算字段"><span class="toc-number">4.</span> <span class="toc-text">创建计算字段</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#执行计算"><span class="toc-number">4.1.</span> <span class="toc-text">执行计算</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用数据处理函数"><span class="toc-number">5.</span> <span class="toc-text">使用数据处理函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数值处理函数"><span class="toc-number">6.</span> <span class="toc-text">数值处理函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#汇总数据"><span class="toc-number">7.</span> <span class="toc-text">汇总数据</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#聚集函数"><span class="toc-number">7.1.</span> <span class="toc-text">聚集函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#聚集不同值"><span class="toc-number">7.2.</span> <span class="toc-text">聚集不同值</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分组数据"><span class="toc-number">8.</span> <span class="toc-text">分组数据</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#创建分组"><span class="toc-number">8.1.</span> <span class="toc-text">创建分组</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#过滤分组"><span class="toc-number">8.2.</span> <span class="toc-text">过滤分组</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ORDER-BY-与-GROUP-BY"><span class="toc-number">8.3.</span> <span class="toc-text">ORDER BY 与 GROUP BY</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#select-子句顺序"><span class="toc-number">8.4.</span> <span class="toc-text">select 子句顺序</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#子查询"><span class="toc-number">9.</span> <span class="toc-text">子查询</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#联结表"><span class="toc-number"></span> <span class="toc-text">联结表</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#内联结"><span class="toc-number">0.1.</span> <span class="toc-text">内联结</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建高级联结"><span class="toc-number">1.</span> <span class="toc-text">创建高级联结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自联结"><span class="toc-number">2.</span> <span class="toc-text">自联结</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#使用带聚集函数的联结"><span class="toc-number">2.1.</span> <span class="toc-text">使用带聚集函数的联结</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#组合查询"><span class="toc-number">3.</span> <span class="toc-text">组合查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#插入数据"><span class="toc-number">4.</span> <span class="toc-text">插入数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#从一个表复制到另一个表"><span class="toc-number">5.</span> <span class="toc-text">从一个表复制到另一个表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#更新和删除数据"><span class="toc-number">6.</span> <span class="toc-text">更新和删除数据</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更新和删除的指导原则"><span class="toc-number"></span> <span class="toc-text">更新和删除的指导原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建和操作表"><span class="toc-number"></span> <span class="toc-text">创建和操作表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#表创建基础"><span class="toc-number">1.</span> <span class="toc-text">表创建基础</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#指定默认值"><span class="toc-number">2.</span> <span class="toc-text">指定默认值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#更新表"><span class="toc-number">3.</span> <span class="toc-text">更新表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#删除表"><span class="toc-number">4.</span> <span class="toc-text">删除表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重命名表"><span class="toc-number">5.</span> <span class="toc-text">重命名表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#视图"><span class="toc-number"></span> <span class="toc-text">视图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存储过程"><span class="toc-number"></span> <span class="toc-text">存储过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#管理事务处理"><span class="toc-number"></span> <span class="toc-text">管理事务处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#给系统添加订单的过程如下"><span class="toc-number">1.</span> <span class="toc-text">给系统添加订单的过程如下</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#控制事务处理"><span class="toc-number">2.</span> <span class="toc-text">控制事务处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用ROLLBACK"><span class="toc-number">3.</span> <span class="toc-text">使用ROLLBACK</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用COMMIT"><span class="toc-number">4.</span> <span class="toc-text">使用COMMIT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用保留点"><span class="toc-number">5.</span> <span class="toc-text">使用保留点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用游标"><span class="toc-number"></span> <span class="toc-text">使用游标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用游标-1"><span class="toc-number"></span> <span class="toc-text">使用游标</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#创建游标"><span class="toc-number">1.</span> <span class="toc-text">创建游标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用游标-2"><span class="toc-number">2.</span> <span class="toc-text">使用游标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关闭游标"><span class="toc-number">3.</span> <span class="toc-text">关闭游标</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高级SQL特性"><span class="toc-number"></span> <span class="toc-text">高级SQL特性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#约束"><span class="toc-number">1.</span> <span class="toc-text">约束</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#主键"><span class="toc-number">2.</span> <span class="toc-text">主键</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#外键"><span class="toc-number">3.</span> <span class="toc-text">外键</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#唯一约束"><span class="toc-number">4.</span> <span class="toc-text">唯一约束</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#检查约束"><span class="toc-number">5.</span> <span class="toc-text">检查约束</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#索引"><span class="toc-number">6.</span> <span class="toc-text">索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#触发器"><span class="toc-number">7.</span> <span class="toc-text">触发器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库安全"><span class="toc-number"></span> <span class="toc-text">数据库安全</span></a>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/01/03/mysql 语句/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/01/03/mysql 语句/&text=常用sql命令"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/01/03/mysql 语句/&title=常用sql命令"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/01/03/mysql 语句/&is_video=false&description=常用sql命令"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=常用sql命令&body=Check out this article: http://yoursite.com/2017/01/03/mysql 语句/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/01/03/mysql 语句/&title=常用sql命令"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/01/03/mysql 语句/&title=常用sql命令"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/01/03/mysql 语句/&title=常用sql命令"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/01/03/mysql 语句/&title=常用sql命令"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/01/03/mysql 语句/&name=常用sql命令&description=&lt;h4 id=&quot;常用命令&quot;&gt;&lt;a href=&quot;#常用命令&quot; class=&quot;headerlink&quot; title=&quot;常用命令&quot;&gt;&lt;/a&gt;常用命令&lt;/h4&gt;&lt;h5 id=&quot;简单查询&quot;&gt;&lt;a href=&quot;#简单查询&quot; class=&quot;headerlink&quot; title=&quot;简单查询&quot;&gt;&lt;/a&gt;简单查询&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;show databases; 列出所有数据库&lt;/li&gt;
+&lt;li&gt;use databaseA; &lt;/li&gt;
+&lt;li&gt;select columnName from databaseA;&lt;/li&gt;
+&lt;li&gt;select * from databaseA;&lt;/li&gt;
+&lt;li&gt;select distinct vend_id from databaseA; 检索出vend_id列不同的值  &lt;/li&gt;
+&lt;li&gt;select prod_name form products limit 5; 取前5个&lt;/li&gt;
+&lt;li&gt;select prod_name from products limit 5 offset 5; 从第6个开始取5个&lt;/li&gt;
+&lt;li&gt;select prod_name from products limit 3, 5; 第一个值对应limit值，第二个值是offset值&lt;/li&gt;
+&lt;/ul&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://yoursite.com/2017/01/03/mysql 语句/&t=常用sql命令"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2020
+    于木木
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-89789260-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Baidu Analytics -->
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?237cd7bbe979bebea6c6c345088eb8fb";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

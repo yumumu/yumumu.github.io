@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="前段时间看了哈佛大学的CS50，上周末又看完了《计算机是怎样跑起来的》，感觉它们谈论的内容很相似，在这里总结一下关于计算机的思考。如果只看书名《计算机是怎样跑起来的》，这本书首先讲解了计算机的三大原则————输入、计算和输出。接着讲到了计算机的硬件、汇编语言、程序、算法、数据结构、OOP、数据库、TCP/IP网络、加密、XML和SE。如果只看书名，我觉得该书应该讲的是从启动电源到看到桌面的过程中发">
+<meta name="keywords" content="杂谈">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机杂谈">
+<meta property="og:url" content="http://yoursite.com/2017/06/05/计算机杂谈/index.html">
+<meta property="og:site_name" content="于木木的笔记">
+<meta property="og:description" content="前段时间看了哈佛大学的CS50，上周末又看完了《计算机是怎样跑起来的》，感觉它们谈论的内容很相似，在这里总结一下关于计算机的思考。如果只看书名《计算机是怎样跑起来的》，这本书首先讲解了计算机的三大原则————输入、计算和输出。接着讲到了计算机的硬件、汇编语言、程序、算法、数据结构、OOP、数据库、TCP/IP网络、加密、XML和SE。如果只看书名，我觉得该书应该讲的是从启动电源到看到桌面的过程中发">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2017/06/05/计算机杂谈/编译过程及运行过程.png">
+<meta property="og:updated_time" content="2020-04-18T12:34:59.087Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机杂谈">
+<meta name="twitter:description" content="前段时间看了哈佛大学的CS50，上周末又看完了《计算机是怎样跑起来的》，感觉它们谈论的内容很相似，在这里总结一下关于计算机的思考。如果只看书名《计算机是怎样跑起来的》，这本书首先讲解了计算机的三大原则————输入、计算和输出。接着讲到了计算机的硬件、汇编语言、程序、算法、数据结构、OOP、数据库、TCP/IP网络、加密、XML和SE。如果只看书名，我觉得该书应该讲的是从启动电源到看到桌面的过程中发">
+<meta name="twitter:image" content="http://yoursite.com/2017/06/05/计算机杂谈/编译过程及运行过程.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>计算机杂谈</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/06/13/基本设计原则/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/05/29/《UNIX编程艺术》读书总结/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/06/05/计算机杂谈/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/06/05/计算机杂谈/&text=计算机杂谈"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/06/05/计算机杂谈/&title=计算机杂谈"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/06/05/计算机杂谈/&is_video=false&description=计算机杂谈"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=计算机杂谈&body=Check out this article: http://yoursite.com/2017/06/05/计算机杂谈/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/06/05/计算机杂谈/&title=计算机杂谈"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/06/05/计算机杂谈/&title=计算机杂谈"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/06/05/计算机杂谈/&title=计算机杂谈"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/06/05/计算机杂谈/&title=计算机杂谈"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/06/05/计算机杂谈/&name=计算机杂谈&description=&lt;p&gt;前段时间看了哈佛大学的CS50，上周末又看完了《计算机是怎样跑起来的》，感觉它们谈论的内容很相似，在这里总结一下关于计算机的思考。&lt;br&gt;如果只看书名《计算机是怎样跑起来的》，这本书首先讲解了计算机的三大原则————输入、计算和输出。接着讲到了计算机的硬件、汇编语言、程序、算法、数据结构、OOP、数据库、TCP/IP网络、加密、XML和SE。如果只看书名，我觉得该书应该讲的是从启动电源到看到桌面的过程中发生了什么，但是看完了这本书，我感觉这本书其实叫《计算机信息是如何传递的》更合适。&lt;br&gt;&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://yoursite.com/2017/06/05/计算机杂谈/&t=计算机杂谈"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        计算机杂谈
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">于木木的笔记</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2017-06-05T00:27:11.000Z" itemprop="datePublished">2017-06-05</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/杂谈/">杂谈</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>前段时间看了哈佛大学的CS50，上周末又看完了《计算机是怎样跑起来的》，感觉它们谈论的内容很相似，在这里总结一下关于计算机的思考。<br>如果只看书名《计算机是怎样跑起来的》，这本书首先讲解了计算机的三大原则————输入、计算和输出。接着讲到了计算机的硬件、汇编语言、程序、算法、数据结构、OOP、数据库、TCP/IP网络、加密、XML和SE。如果只看书名，我觉得该书应该讲的是从启动电源到看到桌面的过程中发生了什么，但是看完了这本书，我感觉这本书其实叫《计算机信息是如何传递的》更合适。<br><a id="more"></a><br>下面以我以“计算机信息是如何传递的”的方式重新组织一下该书的内容.<br>Q：信息是如何从一台计算机传递到另一台计算机的？<br>A：计算机之间由虚拟的管道连接在一起的，当我在PC1上输入信息发送给PC2的时候，信息就通过这些管道被传送到了PC2。如果要发送的信息内容非常多，信息内容会被拆开，一个一个的发送。就像我们写信需要格式一样，信息也是有格式的，该书写作时流行的是XML（当前JSON使用较多）。我们发送的信息可能会被其他人看到，如果这些信息比较重要，这就涉及到了加密与解密。如果你需要把发收到的信息组织起来，你可能会用到数据库，数据库是用来存储数据的，通过DBMS，我们可以对数据进行增删改查。如有时候我们需要对某些信息进行排序，这就需要用到算法和数据结构。<br>上面涉及到的很多东西都是由程序来完成的，程序是指令和数据的合集，我们可以用指令操作数据，这些指令最终由计算机的大脑CPU来完成。计算机的大脑和我们人的大脑不太一样，这里就要说到不同的编程语言，编程语言有高级的和低级的。高级的是说我们人比较容易能看懂的，比如C语言，低级的是说CPU能看懂的，比如说汇编语言和机器语言。高级语言到低级语言的转换需要由编译器和汇编器来完成。</p>
+<p><img src="/2017/06/05/计算机杂谈/编译过程及运行过程.png" alt="编译过程及运行过程"> </p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/06/05/计算机杂谈/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/06/05/计算机杂谈/&text=计算机杂谈"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/06/05/计算机杂谈/&title=计算机杂谈"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/06/05/计算机杂谈/&is_video=false&description=计算机杂谈"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=计算机杂谈&body=Check out this article: http://yoursite.com/2017/06/05/计算机杂谈/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/06/05/计算机杂谈/&title=计算机杂谈"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/06/05/计算机杂谈/&title=计算机杂谈"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/06/05/计算机杂谈/&title=计算机杂谈"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/06/05/计算机杂谈/&title=计算机杂谈"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/06/05/计算机杂谈/&name=计算机杂谈&description=&lt;p&gt;前段时间看了哈佛大学的CS50，上周末又看完了《计算机是怎样跑起来的》，感觉它们谈论的内容很相似，在这里总结一下关于计算机的思考。&lt;br&gt;如果只看书名《计算机是怎样跑起来的》，这本书首先讲解了计算机的三大原则————输入、计算和输出。接着讲到了计算机的硬件、汇编语言、程序、算法、数据结构、OOP、数据库、TCP/IP网络、加密、XML和SE。如果只看书名，我觉得该书应该讲的是从启动电源到看到桌面的过程中发生了什么，但是看完了这本书，我感觉这本书其实叫《计算机信息是如何传递的》更合适。&lt;br&gt;&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://yoursite.com/2017/06/05/计算机杂谈/&t=计算机杂谈"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2020
+    于木木
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-89789260-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Baidu Analytics -->
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?237cd7bbe979bebea6c6c345088eb8fb";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

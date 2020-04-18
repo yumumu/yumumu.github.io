@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="前几天读了《iOS网络高级编程》，现将感想收货记录总结一下。 起因因为自家的App在网络层有错误产生的时候一律都弹出来，这样做一来是对用户不友好，二是什么错都用alert弹出来，有时候多个请求都是404直接弹出来也很傻。本人就思考怎么处理错误比较好，一边想一边google，最终得出的方案就是根据http返回码加上自家后台返回的规定好的error结合来细分。下面细说：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《iOS网络高级编程》读书总结">
+<meta property="og:url" content="http://yoursite.com/2017/02/18/《iOS网络高级编程》读书总结/index.html">
+<meta property="og:site_name" content="于木木的笔记">
+<meta property="og:description" content="前几天读了《iOS网络高级编程》，现将感想收货记录总结一下。 起因因为自家的App在网络层有错误产生的时候一律都弹出来，这样做一来是对用户不友好，二是什么错都用alert弹出来，有时候多个请求都是404直接弹出来也很傻。本人就思考怎么处理错误比较好，一边想一边google，最终得出的方案就是根据http返回码加上自家后台返回的规定好的error结合来细分。下面细说：">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2017/02/18/《iOS网络高级编程》读书总结/远程门面.jpg">
+<meta property="og:updated_time" content="2020-04-18T12:34:59.069Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《iOS网络高级编程》读书总结">
+<meta name="twitter:description" content="前几天读了《iOS网络高级编程》，现将感想收货记录总结一下。 起因因为自家的App在网络层有错误产生的时候一律都弹出来，这样做一来是对用户不友好，二是什么错都用alert弹出来，有时候多个请求都是404直接弹出来也很傻。本人就思考怎么处理错误比较好，一边想一边google，最终得出的方案就是根据http返回码加上自家后台返回的规定好的error结合来细分。下面细说：">
+<meta name="twitter:image" content="http://yoursite.com/2017/02/18/《iOS网络高级编程》读书总结/远程门面.jpg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>《iOS网络高级编程》读书总结</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/02/26/创建型设计模式/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/01/03/mysql 语句/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/02/18/《iOS网络高级编程》读书总结/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/02/18/《iOS网络高级编程》读书总结/&text=《iOS网络高级编程》读书总结"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/02/18/《iOS网络高级编程》读书总结/&title=《iOS网络高级编程》读书总结"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/02/18/《iOS网络高级编程》读书总结/&is_video=false&description=《iOS网络高级编程》读书总结"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=《iOS网络高级编程》读书总结&body=Check out this article: http://yoursite.com/2017/02/18/《iOS网络高级编程》读书总结/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/02/18/《iOS网络高级编程》读书总结/&title=《iOS网络高级编程》读书总结"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/02/18/《iOS网络高级编程》读书总结/&title=《iOS网络高级编程》读书总结"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/02/18/《iOS网络高级编程》读书总结/&title=《iOS网络高级编程》读书总结"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/02/18/《iOS网络高级编程》读书总结/&title=《iOS网络高级编程》读书总结"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/02/18/《iOS网络高级编程》读书总结/&name=《iOS网络高级编程》读书总结&description=&lt;p&gt;前几天读了《iOS网络高级编程》，现将感想收货记录总结一下。&lt;/p&gt;
+&lt;h4 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot; class=&quot;headerlink&quot; title=&quot;起因&quot;&gt;&lt;/a&gt;起因&lt;/h4&gt;&lt;p&gt;因为自家的App在网络层有错误产生的时候一律都弹出来，这样做一来是对用户不友好，二是什么错都用alert弹出来，有时候多个请求都是404直接弹出来也很傻。本人就思考怎么处理错误比较好，一边想一边google，最终得出的方案就是根据http返回码加上自家后台返回的规定好的error结合来细分。下面细说：&lt;br&gt;&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://yoursite.com/2017/02/18/《iOS网络高级编程》读书总结/&t=《iOS网络高级编程》读书总结"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#起因"><span class="toc-number">1.</span> <span class="toc-text">起因</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解决方案"><span class="toc-number">2.</span> <span class="toc-text">解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#远程门面"><span class="toc-number">2.1.</span> <span class="toc-text">远程门面</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#服务版本化"><span class="toc-number">2.2.</span> <span class="toc-text">服务版本化</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#服务定位器"><span class="toc-number">2.3.</span> <span class="toc-text">服务定位器</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其他"><span class="toc-number">3.</span> <span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TODO："><span class="toc-number"></span> <span class="toc-text">TODO：</span></a>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        《iOS网络高级编程》读书总结
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">于木木的笔记</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2017-02-18T09:02:36.000Z" itemprop="datePublished">2017-02-18</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/网络/">网络</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>前几天读了《iOS网络高级编程》，现将感想收货记录总结一下。</p>
+<h4 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h4><p>因为自家的App在网络层有错误产生的时候一律都弹出来，这样做一来是对用户不友好，二是什么错都用alert弹出来，有时候多个请求都是404直接弹出来也很傻。本人就思考怎么处理错误比较好，一边想一边google，最终得出的方案就是根据http返回码加上自家后台返回的规定好的error结合来细分。下面细说：<br><a id="more"></a> </p>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>首先根据http response status code来划分成两类，如果http response status code不是200可以根据返回的实际情况，可以在控制器上提示用户当前的网络情况。如果是http response status code是200就但是后台报错，就直接把后台报错弹出来。因为现在用的这套后台时间比较长了，规则定义的不是很清晰，有些错误弹出来不是，不弹出来也不是。重新来做的话，可以将规则定义的更详细一些。</p>
+<p>上面的内容看起来跟标题似乎关系不是很大，下面开始谈谈《iOS网络高级编程》的读后感想与收货。<br>之前在解决上面这个问题的时候，Google到一遍文章里面谈服务版本化的时候提到了这本书，所以就去图书馆借来读一读。其实这本书15年的时候就从图书馆借来读过，只不过自己当时实在太菜，匆匆读了一小部分就还掉了。这次读收货还是挺大的。</p>
+<p>针对服务端，本书提出了三种模式，分别是远程门面、API版本华以及服务定位器。</p>
+<h5 id="远程门面"><a href="#远程门面" class="headerlink" title="远程门面"></a>远程门面</h5><p>一个App可能与多个系统有交互，这些系统的数据交换方式都不太一样，比如JSON，XML或者其它数据格式（我也不知道其它是什么，工作中只用过JOSN）。如果App已经上线，后期增加了新的系统交互，那iOS App是不是又要重新发布新版呢？有了远程门面模式，就很简单了，我们的App只跟“远程门面”进行直接交互，统一数据格式，具体与其它系统的交互，统一由“远程门面”负责处理。书上提到模式应该是应用于客户端，但是我感觉这项工作由后端代劳了（好像自打工作，我们移动端的同事一般只跟“后台”同事直接打交道），看完这本书，想来自家的后台应该是已经运用了这种模式。毕竟业务上App也是与其它系统有过交互的，但是数据交互的方式与规则都是最初定下来的。<br>下面摘录一下当时的笔记</p>
+<blockquote>
+<p>门面可以将请求转换为后端系统所需的格式，比如可以将JSON请求转化为SOAP请求。还可以将无法公开到Internet的其它系统强制施加安全约束，在转发请求前追踪和验证API key，限制发送给某些后端系统的请求数量。设计良好的API可以适应变化的后端数据源同时为依赖它的应用提供不变的门面。<br><img src="/2017/02/18/《iOS网络高级编程》读书总结/远程门面.jpg" alt="远程门面"><br><strong><em>这个模式介绍完了感觉像是反向代理，客户端直接找远程门面，远程门面找谁了客户端不关心也不知道</em></strong></p>
+</blockquote>
+<h5 id="服务版本化"><a href="#服务版本化" class="headerlink" title="服务版本化"></a>服务版本化</h5><p>之前自家的App都是强制升级，所以根本不知道服务版本华的概念，知道这个概念也是顺藤摸瓜找到了这本书才知道的。关于这个概念这周跟后台的同事交流了一下，他也没有做过。但是有些API其实也考虑了版本，只不过整个系统设计的时候其实并没有这个概念。另外，本人感觉服务版本华对客户端的影响并不大，主要的逻辑处理都在服务端。</p>
+<h5 id="服务定位器"><a href="#服务定位器" class="headerlink" title="服务定位器"></a>服务定位器</h5><p>这个模式读完书上的内容没有看懂到底有什么作用，只知道客户端在发送网络前要加载解析一个服务相关的文件。<br>等将来明白了再来这里补充。 摘抄一段笔记：</p>
+<blockquote>
+<p>服务定位器可以使应用能够动态检测到新的服务短点并使用它们，从而无须重新编译并重新向App Store提交应用。</p>
+</blockquote>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>平时项目中常用的AFNetWorking是基于NSURL这一层封装的，NSURL相关的类是基于CFNetWork封装的，CFNetWork是基于BSD Socket封装的。再往下就是硬件层了。<br>除了NSURL以外，GameKit和Bonjour也可以用来在不同的端之间进行交互，并且GameKit和Bonjour都提供了离线交换数据的功能。对这些东西不是很熟悉，以后用到了再详细看）</p>
+<h3 id="TODO："><a href="#TODO：" class="headerlink" title="TODO："></a>TODO：</h3><p>下次做项目尝试对网络层重新封装，把每个请求封装成一个类。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#起因"><span class="toc-number">1.</span> <span class="toc-text">起因</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解决方案"><span class="toc-number">2.</span> <span class="toc-text">解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#远程门面"><span class="toc-number">2.1.</span> <span class="toc-text">远程门面</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#服务版本化"><span class="toc-number">2.2.</span> <span class="toc-text">服务版本化</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#服务定位器"><span class="toc-number">2.3.</span> <span class="toc-text">服务定位器</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其他"><span class="toc-number">3.</span> <span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TODO："><span class="toc-number"></span> <span class="toc-text">TODO：</span></a>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/02/18/《iOS网络高级编程》读书总结/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/02/18/《iOS网络高级编程》读书总结/&text=《iOS网络高级编程》读书总结"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/02/18/《iOS网络高级编程》读书总结/&title=《iOS网络高级编程》读书总结"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/02/18/《iOS网络高级编程》读书总结/&is_video=false&description=《iOS网络高级编程》读书总结"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=《iOS网络高级编程》读书总结&body=Check out this article: http://yoursite.com/2017/02/18/《iOS网络高级编程》读书总结/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/02/18/《iOS网络高级编程》读书总结/&title=《iOS网络高级编程》读书总结"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/02/18/《iOS网络高级编程》读书总结/&title=《iOS网络高级编程》读书总结"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/02/18/《iOS网络高级编程》读书总结/&title=《iOS网络高级编程》读书总结"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/02/18/《iOS网络高级编程》读书总结/&title=《iOS网络高级编程》读书总结"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/02/18/《iOS网络高级编程》读书总结/&name=《iOS网络高级编程》读书总结&description=&lt;p&gt;前几天读了《iOS网络高级编程》，现将感想收货记录总结一下。&lt;/p&gt;
+&lt;h4 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot; class=&quot;headerlink&quot; title=&quot;起因&quot;&gt;&lt;/a&gt;起因&lt;/h4&gt;&lt;p&gt;因为自家的App在网络层有错误产生的时候一律都弹出来，这样做一来是对用户不友好，二是什么错都用alert弹出来，有时候多个请求都是404直接弹出来也很傻。本人就思考怎么处理错误比较好，一边想一边google，最终得出的方案就是根据http返回码加上自家后台返回的规定好的error结合来细分。下面细说：&lt;br&gt;&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://yoursite.com/2017/02/18/《iOS网络高级编程》读书总结/&t=《iOS网络高级编程》读书总结"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2020
+    于木木
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-89789260-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Baidu Analytics -->
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?237cd7bbe979bebea6c6c345088eb8fb";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

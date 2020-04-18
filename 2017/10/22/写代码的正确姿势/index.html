@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="自年初以来，陆续看了设计模式和代码重构相关的一些书籍，学写到了一些来自西方的先进姿势。本人在运用这些姿势改进旧代码的同时，也在新代码的编写中刻意使用这些姿势。明显感觉到修改代码更容易了，代码结构更好了，bug数量也减少了。再加上近日又看了《代码整洁之道》，感觉总结一下我在运用这些姿势方面的经验还是十分有必要的。">
+<meta name="keywords" content="重构,设计模式,技术">
+<meta property="og:type" content="article">
+<meta property="og:title" content="写代码的正确姿势">
+<meta property="og:url" content="http://yoursite.com/2017/10/22/写代码的正确姿势/index.html">
+<meta property="og:site_name" content="于木木的笔记">
+<meta property="og:description" content="自年初以来，陆续看了设计模式和代码重构相关的一些书籍，学写到了一些来自西方的先进姿势。本人在运用这些姿势改进旧代码的同时，也在新代码的编写中刻意使用这些姿势。明显感觉到修改代码更容易了，代码结构更好了，bug数量也减少了。再加上近日又看了《代码整洁之道》，感觉总结一下我在运用这些姿势方面的经验还是十分有必要的。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-04-18T12:34:59.070Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="写代码的正确姿势">
+<meta name="twitter:description" content="自年初以来，陆续看了设计模式和代码重构相关的一些书籍，学写到了一些来自西方的先进姿势。本人在运用这些姿势改进旧代码的同时，也在新代码的编写中刻意使用这些姿势。明显感觉到修改代码更容易了，代码结构更好了，bug数量也减少了。再加上近日又看了《代码整洁之道》，感觉总结一下我在运用这些姿势方面的经验还是十分有必要的。">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>写代码的正确姿势</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/07/19/hackintosh_on_s200/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/10/15/iOS性能优化的25个技巧/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/10/22/写代码的正确姿势/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/10/22/写代码的正确姿势/&text=写代码的正确姿势"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/10/22/写代码的正确姿势/&title=写代码的正确姿势"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/10/22/写代码的正确姿势/&is_video=false&description=写代码的正确姿势"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=写代码的正确姿势&body=Check out this article: http://yoursite.com/2017/10/22/写代码的正确姿势/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/10/22/写代码的正确姿势/&title=写代码的正确姿势"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/10/22/写代码的正确姿势/&title=写代码的正确姿势"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/10/22/写代码的正确姿势/&title=写代码的正确姿势"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/10/22/写代码的正确姿势/&title=写代码的正确姿势"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/10/22/写代码的正确姿势/&name=写代码的正确姿势&description=&lt;p&gt;自年初以来，陆续看了设计模式和代码重构相关的一些书籍，学写到了一些来自西方的先进姿势。本人在运用这些姿势改进旧代码的同时，也在新代码的编写中刻意使用这些姿势。明显感觉到修改代码更容易了，代码结构更好了，bug数量也减少了。再加上近日又看了《代码整洁之道》，感觉总结一下我在运用这些姿势方面的经验还是十分有必要的。&lt;br&gt;&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://yoursite.com/2017/10/22/写代码的正确姿势/&t=写代码的正确姿势"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        写代码的正确姿势
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">于木木的笔记</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2017-10-22T10:24:07.000Z" itemprop="datePublished">2017-10-22</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/技术/">技术</a>, <a class="tag-link" href="/tags/设计模式/">设计模式</a>, <a class="tag-link" href="/tags/重构/">重构</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>自年初以来，陆续看了设计模式和代码重构相关的一些书籍，学写到了一些来自西方的先进姿势。本人在运用这些姿势改进旧代码的同时，也在新代码的编写中刻意使用这些姿势。明显感觉到修改代码更容易了，代码结构更好了，bug数量也减少了。再加上近日又看了《代码整洁之道》，感觉总结一下我在运用这些姿势方面的经验还是十分有必要的。<br><a id="more"></a><br>首先是四个大的方面，分为抽象、封装、层次结构和模块化。抽象和封装也是我们熟知的面向对象的三大特性的其中两个。日常开发，对一个对象进行抽象，封装好它的属性和方法。另外，对一个功能进行模块和层次结构的划分，更好的管理代码工程。</p>
+<ul>
+<li>代码规范。无论对个人和团队来说，一套合适统一的代码规范是必需的。类和方法的命名，单行长度，空格的使用等等。  </li>
+<li>注释。尽量通过类和方法的命名去提现代码的功能，因为注释有时候不能得到及时的更新，就容易误导别人。</li>
+<li>函数的长度。 函数的长度要尽量短，一个函数只完成一个功能。</li>
+<li>switch函数要考虑能不能通过工厂方法包装起来！（这一点我自己做的不够好。）</li>
+<li>DRT，不要重复你自己。一个工程中，不要出现重复代码。如果有重复代码，修改代码的时候只修改了一处忘记了其它的就容易出bug。对于那些重复代码，可以封装成函数模块，调用的时候也更加方便。有些代码片段，可以用Dash来管理，配合Alfred使用，也利于提高工作效率。对于iOSer，有些代码可以封装成CocoaPods库，利人利己。</li>
+<li>单元测试。日常开发，单元测试可以减少我们的bug率，提高自己的形象：）。同时重构代码的时候，也能更放心大胆的重构代码。更进一步，可以采用TDD进行开发，目前本人还没有使用过！测试有几个点需要注意，“不要忽略小测试，注意边界条件，同时测试应该快速”。</li>
+</ul>
+<p>代码写完以后，我们可以从以下几个方面去评价以下自己的代码</p>
+<ul>
+<li>可理解性</li>
+<li>可修改性</li>
+<li>可扩展性</li>
+<li>可重用性</li>
+<li>可靠性</li>
+</ul>
+<p>写好自己的代码，利人利己。对维护的人更容易看懂，修改更方便，也不容易把自己的代码弄糟。还记得当初看着前辈的代码，被我一改，就变得不那么好了。当然，经过自己的努力，现在变成了部分同事改完我的代码，我的代码就变坏了。这也从侧面说明自己的能力较当初已经取得了进步！</p>
+<p>最后，也许我们刚开始的代码写的不好，这是正常的。只要我们能够牢记前辈们总结好的经验教训持续改进自己的代码，就一定能够越来越好！</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/10/22/写代码的正确姿势/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/10/22/写代码的正确姿势/&text=写代码的正确姿势"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/10/22/写代码的正确姿势/&title=写代码的正确姿势"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/10/22/写代码的正确姿势/&is_video=false&description=写代码的正确姿势"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=写代码的正确姿势&body=Check out this article: http://yoursite.com/2017/10/22/写代码的正确姿势/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/10/22/写代码的正确姿势/&title=写代码的正确姿势"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/10/22/写代码的正确姿势/&title=写代码的正确姿势"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/10/22/写代码的正确姿势/&title=写代码的正确姿势"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/10/22/写代码的正确姿势/&title=写代码的正确姿势"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/10/22/写代码的正确姿势/&name=写代码的正确姿势&description=&lt;p&gt;自年初以来，陆续看了设计模式和代码重构相关的一些书籍，学写到了一些来自西方的先进姿势。本人在运用这些姿势改进旧代码的同时，也在新代码的编写中刻意使用这些姿势。明显感觉到修改代码更容易了，代码结构更好了，bug数量也减少了。再加上近日又看了《代码整洁之道》，感觉总结一下我在运用这些姿势方面的经验还是十分有必要的。&lt;br&gt;&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://yoursite.com/2017/10/22/写代码的正确姿势/&t=写代码的正确姿势"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2020
+    于木木
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-89789260-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Baidu Analytics -->
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?237cd7bbe979bebea6c6c345088eb8fb";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
